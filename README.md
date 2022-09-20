@@ -1,2 +1,2 @@
 # Argos
-a passive WiFi tracker and profiling tool for recon that utilizes probeframes
+This tool provides passive WiFi tracking and profiling based on probeframe data. This is ideal for recon and vareous other applications. 
