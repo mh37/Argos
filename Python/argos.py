@@ -6,6 +6,14 @@ from subprocess import Popen, PIPE
 from colorclass import Color
 from terminaltables import AsciiTable
 
+##############################
+#  DO NOT PUBLISH THIS CODE  #
+##############################
+#I am not the author of this code. This is copied together from existing approaches of other projects.
+#I have modified the original and keep modifying it for the purpose of experimentation and working out what is possible and what not.
+#Publishing this code in the current state might be in violation of licence agreements without crediting the original authors
+
+
 channels = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 36, 40, 44, 48, 52, 56, 60, 64, 100, 104, 108, 112, 116, 120, 124, 128, 132, 136, 140, 149, 153, 157, 161]
 
 parser = argparse.ArgumentParser()
