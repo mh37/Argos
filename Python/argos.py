@@ -109,7 +109,7 @@ for row in iter(process.stdout.readline, b''):
             wigle = Wigle.wigle_location(groups.group(4), wigle_flag)
             if wigle == 1:
                 wigle_flag = True
-            if wigle is 2 and not wigle_flag:
+            if wigle == 2 and not wigle_flag:
                 loc = '-'
             elif wigle is None and not wigle_flag:
                 loc = '?+'
