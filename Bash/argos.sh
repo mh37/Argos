@@ -1,12 +1,17 @@
 #!/bin/bash
 
 
-#Lets do the same in bash
+#a basic probe request capture using the probequet tool. Just for testing.
 
-ifconfig
+iwconfig
 read -p "Which interface should be used?: " ifName
-ifconfig $ifName down
-iwconfig $ifName mode monitor
-ifconfig $ifName up
+
+#systemctl stop NetworkManager
+#ifconfig $ifName down
+airmon-ng check kill
+#iw $ifName set monitor control
+airmon-ng start $ifName
 probequest $ifName
 
+
+#sudo ip link set wlan# up
