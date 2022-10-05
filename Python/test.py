@@ -7,15 +7,15 @@ import re, os, socket, sys, signal, threading, time, subprocess, argparse, itert
 
 def main():
 
+    print("Welcome to Argos")
+    print("'''''''''''''''''''")
     print("Available network interface controllers:")
     print(socket.if_nameindex())
-
     selectedNIC = input("Which NIC should be used? (Type the name):")
 
-    os.syste4m("airmon-ng check kill")
+    os.system("airmon-ng check kill")
     os.system("airmon-ng start " + selectedNIC)
-    os.system("probequest " + selectedNIC)
-
+    os.system("probequest " + selectedNIC + "mon")
 
 
 if __name__ == '__main__':
