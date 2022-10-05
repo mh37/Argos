@@ -3,6 +3,7 @@
 #This file is purely for temporary testing purposes, Will be removed later.
 
 import re, os, socket, sys, signal, threading, time, subprocess, argparse, itertools
+from subprocess import Popen, PIPE
 
 
 def main():
@@ -13,9 +14,13 @@ def main():
     print(socket.if_nameindex())
     selectedNIC = input("Which NIC should be used? (Type the name):")
 
-    os.system("airmon-ng check kill")
-    os.system("airmon-ng start " + selectedNIC)
-    os.system("probequest " + selectedNIC + "mon")
+    #putting the NIC in monitor mode
+    subprocess.run(["ifconfig", selectedNIC, "down"])
+    subprocess.run(["iwconfig", selectedNIC, "mode", "monitor"])
+    subprocess.run(["ifconfig", selectedNIC, "up"])
+    subprocess.run(["probequest", selectedNIC])
+
+
 
 #Retrieve vendor based on MAC address
 def check_vendor(mac):
