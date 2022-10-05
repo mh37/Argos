@@ -17,6 +17,14 @@ def main():
     os.system("airmon-ng start " + selectedNIC)
     os.system("probequest " + selectedNIC + "mon")
 
+#Retrieve vendor based on MAC address
+def check_vendor(mac):
+    with open('macvendors.txt', 'r') as f:
+        for line in f:
+            l = line.split('\t')
+            if l[0].lower() in mac.replace(':', '') :
+                return l[1].strip()
+    return 'N/A'
 
 if __name__ == '__main__':
     main()
