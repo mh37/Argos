@@ -10,3 +10,6 @@ Requirements
 
 - Python
 - Scapy
+
+
+WARNING: The storage of MAC addresses is illegal in most countries and may violate your local data privacy laws. Check your local laws first.
