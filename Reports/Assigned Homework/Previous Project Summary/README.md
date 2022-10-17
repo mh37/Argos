@@ -1,5 +1,6 @@
 Tero recommended going through two earlier projects done in an earlier run of the course, and writing synopsi on them:
 https://www.lulu.com/shop/thomas-eulenberger-and-ya%C3%ABl-kermorvant-and-tom-kurenmaa-and-leo-j%C3%A4%C3%A4skel%C3%A4inen/wi-fi-penetration-testing-for-beginners/ebook/product-23646435.html?page=1&pageSize=4
+
 https://github.com/Nikitushka/ProjectIcaros
 
 # WiFi Penetration Testing for Dummies
