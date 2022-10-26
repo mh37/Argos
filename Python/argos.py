@@ -1,10 +1,7 @@
 #!/usr/bin/python
 
-#This file is purely for temporary testing purposes, Will be removed later.
-
 import re, os, socket, sys, signal, threading, time, subprocess, argparse, itertools
 from subprocess import Popen, PIPE
-
 
 def main():
 
@@ -12,11 +9,15 @@ def main():
     print("'''''''''''''''''''")
     print("Available network interface controllers:")
     print(socket.if_nameindex())
-    #subprocess.run("iwconfig")
+    #Maybe we could also use here: subprocess.run("iwconfig")
     selectedNIC = input("Which NIC should be used? (Type the name):")
 
     #putting the NIC in monitor mode
     subprocess.run(["sudo bettercap -iface ", selectedNIC])
+    subprocess.run(["wifi.recon on"])
+
+
+    #TODO: Processing / Analyzing, Formatting / Output / Map Visualisation (wigly API call based on hotspot names)
 
 
 #Retrieve vendor based on MAC address
