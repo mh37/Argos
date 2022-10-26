@@ -12,14 +12,11 @@ def main():
     print("'''''''''''''''''''")
     print("Available network interface controllers:")
     print(socket.if_nameindex())
+    #subprocess.run("iwconfig")
     selectedNIC = input("Which NIC should be used? (Type the name):")
 
     #putting the NIC in monitor mode
-    subprocess.run(["ifconfig", selectedNIC, "down"])
-    subprocess.run(["iwconfig", selectedNIC, "mode", "monitor"])
-    subprocess.run(["ifconfig", selectedNIC, "up"])
-    subprocess.run(["probequest", selectedNIC])
-
+    subprocess.run(["sudo bettercap -iface ", selectedNIC])
 
 
 #Retrieve vendor based on MAC address
