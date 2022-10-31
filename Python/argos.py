@@ -15,8 +15,12 @@ def main():
     subprocess.run("iwconfig")
     selectedNIC = input("Which NIC should be used? (Type the name):")
 
-    #putting the NIC in monitor mode
-    subprocess.run(["sudo", "bettercap", "-iface", selectedNIC], input="wifi.recon on")
+    #start monitoring on the selected NIC
+    #subprocess.run(["sudo", "bettercap", "-iface", selectedNIC], input="wifi.recon on")
+    foo_proc = Popen(["sudo", "bettercap", "-iface", selectedNIC], stdin=PIPE, stdout=PIPE)
+    foo_proc.stdin.write("wifi.recon on")
+    outputlog, errorlog = foo_proc.communicate()
+    foo_proc.stdin.close()
 
 if __name__ == '__main__':
     main()
