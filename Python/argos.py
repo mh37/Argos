@@ -1,9 +1,14 @@
 #!/usr/bin/python
 
+
+
 import re, os, socket, sys, signal, threading, time, subprocess, argparse, itertools
 from subprocess import Popen, PIPE
 
+#TODO: Processing / Analyzing, Formatting / Output / Map Visualisation (wigly API call based on hotspot names)
 def main():
+
+    data = []
 
     print("Welcome to Argos")
     print("'''''''''''''''''''")
@@ -13,11 +18,10 @@ def main():
     selectedNIC = input("Which NIC should be used? (Type the name):")
 
     #putting the NIC in monitor mode
-    subprocess.run(["sudo", "bettercap", "-iface", selectedNIC])
-    subprocess.run(["wifi.recon", "on"])
+    subprocess.run(["sudo", "bettercap", "-iface", selectedNIC, "wifi.recon", "on"])
+    #subprocess.run(["wifi.recon", "on"])
 
-
-    #TODO: Processing / Analyzing, Formatting / Output / Map Visualisation (wigly API call based on hotspot names)
+def print_capturedData():
 
 
 #Retrieve vendor based on MAC address
