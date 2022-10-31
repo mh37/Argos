@@ -8,12 +8,13 @@ def main():
     print("Welcome to Argos")
     print("'''''''''''''''''''")
     print("Available network interface controllers:")
-    print(socket.if_nameindex())
-    #Maybe we could also use here: subprocess.run("iwconfig")
+    #print(socket.if_nameindex())
+    #Maybe we could also use here:
+    subprocess.run("iwconfig")
     selectedNIC = input("Which NIC should be used? (Type the name):")
 
     #putting the NIC in monitor mode
-    subprocess.run(["sudo bettercap -iface ", selectedNIC])
+    subprocess.run(["sudo bettercap -iface", selectedNIC])
     subprocess.run(["wifi.recon on"])
 
 
