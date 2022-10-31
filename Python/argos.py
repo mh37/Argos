@@ -16,10 +16,10 @@ def main():
     selectedNIC = input("Which NIC should be used? (Type the name):")
 
     #start monitoring on the selected NIC
-    #subprocess.run(["sudo", "bettercap", "-iface", selectedNIC], input="wifi.recon on")
-    proc = Popen(["sudo", "bettercap", "-iface", selectedNIC], stdin=PIPE, stdout=PIPE, shell=True)
-    output = proc.communicate(b"wifi.recon on\n")[0]  # send 1 to test.exe
-    print(output)
+    subprocess.run(["sudo", "bettercap", "-iface", selectedNIC], "&&", "wifi.recon", "on")
+    #os.system('echo a > outputa.txt && echo b > outputb.txt')
+
+
 
 if __name__ == '__main__':
     main()
