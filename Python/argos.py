@@ -17,10 +17,9 @@ def main():
 
     #start monitoring on the selected NIC
     #subprocess.run(["sudo", "bettercap", "-iface", selectedNIC], input="wifi.recon on")
-    foo_proc = Popen(["sudo", "bettercap", "-iface", selectedNIC], stdin=PIPE, stdout=PIPE)
-    foo_proc.stdin.write("wifi.recon on")
-    outputlog, errorlog = foo_proc.communicate()
-    foo_proc.stdin.close()
+    proc = Popen(["sudo", "bettercap", "-iface", selectedNIC], stdin=PIPE, stdout=PIPE, shell=True)
+    output = proc.communicate(b"wifi.recon on\n")[0]  # send 1 to test.exe
+    print(output)
 
 if __name__ == '__main__':
     main()
