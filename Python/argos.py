@@ -14,7 +14,7 @@ def main():
 
     #putting the NIC in monitor mode
     subprocess.run(["sudo", "bettercap", "-iface", selectedNIC])
-    #subprocess.run(["wifi.recon on"])
+    subprocess.run(["wifi.recon", "on"])
 
 
     #TODO: Processing / Analyzing, Formatting / Output / Map Visualisation (wigly API call based on hotspot names)
