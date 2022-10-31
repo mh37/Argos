@@ -16,7 +16,7 @@ def main():
     selectedNIC = input("Which NIC should be used? (Type the name):")
 
     #start monitoring on the selected NIC
-    subprocess.run(["sudo", "bettercap", "-iface", selectedNIC], "&&", "wifi.recon", "on")
+    subprocess.run(["sudo", "bettercap", "-iface", selectedNIC, "&&", "wifi.recon", "on"])
     #os.system('echo a > outputa.txt && echo b > outputb.txt')
 
 
