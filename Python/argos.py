@@ -16,8 +16,7 @@ def main():
     selectedNIC = input("Which NIC should be used? (Type the name):")
 
     #putting the NIC in monitor mode
-    subprocess.run(["sudo", "bettercap", "-iface", selectedNIC])
-    subprocess.run("wifi.recon on")
+    subprocess.run(["sudo", "bettercap", "-iface", selectedNIC], input="wifi.recon on")
 
 if __name__ == '__main__':
     main()
