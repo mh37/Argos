@@ -13,7 +13,7 @@ func main() {
 
 	fmt.Println("Argos")
 	fmt.Println("''''''''''")
-	fmt.Println(exec.Command("bash", "-c", "iwconfig").Output())
+	fmt.Println(exec.Command("iwconfig"))
 	fmt.Println("Which NIC would you like to use?")
 
 	//Read Users NIC selection and save it
