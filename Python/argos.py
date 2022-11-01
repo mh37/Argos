@@ -1,7 +1,7 @@
 #!/usr/bin/python
 
 import re, os, socket, sys, signal, threading, time, subprocess, argparse, itertools
-from subprocess import Popen, PIPE
+from subprocess import Popen, PIPE, call
 
 
 def main():
@@ -12,7 +12,8 @@ def main():
     print("'''''''''''''''''''")
     print("Available network interface controllers:")
     #print(socket.if_nameindex())
-    subprocess.run("iwconfig")
+    #subprocess.run("iwconfig")
+    call("iwconfig")
     selectedNIC = input("Which NIC should be used? (Type the name):")
 
     #start monitoring on the selected NIC
