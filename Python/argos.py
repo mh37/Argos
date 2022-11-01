@@ -17,8 +17,8 @@ def main():
 
     #start monitoring on the selected NIC
     #subprocess.run(["sudo", "bettercap", "-iface", selectedNIC, ";wifi.recon", "on"], shell=True)
-    call(["sudo", "bettercap", "-iface", selectedNIC], shell=True)
-    call(["wifi.recon", "on"], shell=True)
+    call(["sudo", "bettercap", "-iface", selectedNIC])
+    call(["wifi.recon", "on"])
 
     #subprocess.Popen([], shell=True)
     #Popen.communicate()
