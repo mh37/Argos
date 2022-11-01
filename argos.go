@@ -3,6 +3,7 @@ package main
 import (
 	"bufio"
 	"fmt"
+	"log"
 	"os"
 	"os/exec"
 	"strings"
@@ -14,6 +15,8 @@ func main() {
 	fmt.Println("''''''''''")
 	fmt.Println(exec.Command("bash", "-c", "iwconfig").Output())
 	fmt.Println("Which NIC would you like to use?")
+
+	//Read Users NIC selection and save it
 	reader := bufio.NewReader(os.Stdin)
 	// ReadString will block until the delimiter is entered
 	input, err := reader.ReadString('\n')
@@ -24,11 +27,13 @@ func main() {
 	// remove the delimeter from the string
 	input = strings.TrimSuffix(input, "\n")
 
-	cmd, err := exec.Command("bash", "-c", "sudo bettercap -iface ", input).Output()
-	fmt.Println(cmd)
-
+	// run bettercap on the selected NIC
+	cmd := exec.Command("sudo bettercap", "-iface", input)
+	cmd.Stdout = os.Stdout
+	cmd.Stderr = os.Stderr
+	err = cmd.Run()
 	if err != nil {
-		fmt.Println(err)
+		log.Fatalf("cmd.Run() failed with %s\n", err)
 	}
 
 	//start monitoring on the selected NIC  TODO: capture output and run as a subprocess
