@@ -14,9 +14,9 @@ def main():
     call("iwconfig")
     selectedNIC = input("Which NIC should be used? (Type the name):")
 
-    #start monitoring on the selected NIC
-    #call(["sudo", "bettercap", "-iface", selectedNIC])
-    #call(["wifi.recon", "on"])
-    os.system("sudo bettercap -iface " + selectedNIC + " ; wifi.recon on")
+    #start monitoring on the selected NIC  TODO: capture output and run as a subprocess
+    os.system("sudo bettercap -iface " + selectedNIC)
+    os.system("wifi.recon on")
+
 if __name__ == '__main__':
     main()
