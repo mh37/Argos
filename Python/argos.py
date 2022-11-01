@@ -16,7 +16,7 @@ def main():
 
     #start monitoring on the selected NIC
     call(["sudo", "bettercap", "-iface", selectedNIC], shell=True)
-    call(["wifi.recon on"], shell=True)
+    call(["wifi.recon", "on"], shell=True)
 
 
 if __name__ == '__main__':
