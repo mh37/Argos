@@ -12,13 +12,13 @@ def main():
     print("'''''''''''''''''''")
     print("Available network interface controllers:")
     #print(socket.if_nameindex())
-    #subprocess.run("iwconfig")
     call("iwconfig")
     selectedNIC = input("Which NIC should be used? (Type the name):")
 
     #start monitoring on the selected NIC
-    subprocess.run(["sudo", "bettercap", "-iface", selectedNIC, ";wifi.recon", "on"], shell=True)
-    #os.system('sudo bettercap')
+    #subprocess.run(["sudo", "bettercap", "-iface", selectedNIC, ";wifi.recon", "on"], shell=True)
+    call(["sudo", "bettercap", "-iface", selectedNIC], shell=True)
+    call(["wifi.recon", "on"], shell=True)
 
     #subprocess.Popen([], shell=True)
     #Popen.communicate()
