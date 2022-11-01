@@ -11,17 +11,13 @@ def main():
     print("Welcome to Argos")
     print("'''''''''''''''''''")
     print("Available network interface controllers:")
-    #print(socket.if_nameindex())
     call("iwconfig")
     selectedNIC = input("Which NIC should be used? (Type the name):")
 
     #start monitoring on the selected NIC
-    #subprocess.run(["sudo", "bettercap", "-iface", selectedNIC, ";wifi.recon", "on"], shell=True)
-    call(["sudo", "bettercap", "-iface", selectedNIC])
-    call(["wifi.recon", "on"])
+    call(["sudo", "bettercap", "-iface", selectedNIC], shell=True)
+    call(["wifi.recon on"], shell=True)
 
-    #subprocess.Popen([], shell=True)
-    #Popen.communicate()
 
 if __name__ == '__main__':
     main()
