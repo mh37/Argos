@@ -15,9 +15,8 @@ def main():
     selectedNIC = input("Which NIC should be used? (Type the name):")
 
     #start monitoring on the selected NIC
-    call(["sudo", "bettercap", "-iface", selectedNIC], shell=True)
-    call(["wifi.recon", "on"], shell=True)
-
-
+    #call(["sudo", "bettercap", "-iface", selectedNIC])
+    #call(["wifi.recon", "on"])
+    os.system("sudo bettercap -iface " + selectedNIC + " ; wifi.recon on")
 if __name__ == '__main__':
     main()
