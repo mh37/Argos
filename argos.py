@@ -142,8 +142,7 @@ def main():
     params = parser.parse_args()
     if (not params.interface):
         os.system("iwconfig")
-        print("[!] Please provide an interface to listen on using the -i option")
-        return
+        params.interface = input("Which interface should be used: ")
 
     print("[+] Getting config from config.js")
     config = getConfig()
