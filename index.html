@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Wifi Probe Mapper</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <title>Argos</title>
     <meta name="viewport" content="initial-scale=1.0">
-    <meta charset="utf-8">
     <style>
 
       #wifiDemo {
@@ -14,13 +14,13 @@
       #demoTitle {
         width:100%;
         font-size: 21pt;
-        background-color: #111111;
-        color: #11FF11;
+        background-color: #ffffff;
+        color: rgb(0, 0, 0);
       }
 
       #ssidListTitle {
 	font-size: 18pt;
-        color: #11FF11;
+        color: #000000;
       }
 
       #ssidList {
@@ -28,7 +28,7 @@
         overflow: auto;
         width: 20%;
         height: 100%;
-        background-color: #111111;
+        background-color: #424242;
         color: #EEEEEE;
       }
 
@@ -44,21 +44,19 @@
       }
     </style>
   </head>
-
   <body>
-
-  <div id="wifiDemo">
-    <div id="demoTitle">
-      Does your phone's Wifi show where you've been?
+    <div id="wifiDemo">
+      <div id="demoTitle">Argos</div>
+      <div id="ssidList">
+        <hr>
+        <hr>
+        <p id="ssidListTitle">Visible SSIDs</p>
+        <hr></div>
+      <div id="map"></div>
     </div>
-    <div id="ssidList"><hr><hr><p id="ssidListTitle">Captured SSIDs</p><hr></div>
-    <div id="map"></div>
-  </div>
-  <<script src="config.js"></script>
-  <script type="text/javascript">
-
-    //Configuration options can be found in config.js
-
+    &lt;
+    <script src="config.js"></script>
+    <script type="text/javascript">
     var map;
     function initMap() {
       var centerOn = new google.maps.LatLng(config.defaultLat, config.defaultLong);
