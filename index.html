@@ -4,29 +4,22 @@
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
     <title>Argos</title>
     <meta name="viewport" content="initial-scale=1.0">
+    <link rel="stylesheet" href="bootstrap/bootstrap.min.css">
     <style>
-
-      #wifiDemo {
+      #pageContainer {
         width: 100%;
         height: 100%;
       }
 
-      #demoTitle {
-        width:100%;
-        font-size: 21pt;
-        background-color: #ffffff;
-        color: rgb(0, 0, 0);
-      }
-
       #ssidListTitle {
-	font-size: 18pt;
+	    font-size: 18pt;
         color: #000000;
       }
 
       #ssidList {
         float: left;
         overflow: auto;
-        width: 20%;
+        width: 30%;
         height: 100%;
         background-color: #424242;
         color: #EEEEEE;
@@ -45,12 +38,13 @@
     </style>
   </head>
   <body>
-    <div id="wifiDemo">
-      <div id="demoTitle">Argos</div>
-      <div id="ssidList">
+    <div id="pageContainer">
+      <div id="ssidListContainer">
         <hr>
         <hr>
-        <p id="ssidListTitle">Visible SSIDs</p>
+        <p id="ssidListTitle">SSIDs</p>
+        <ul id="ssidList" class="list-group">
+        </ul>
         <hr></div>
       <div id="map"></div>
     </div>
@@ -99,8 +93,8 @@
         }
 
 
-        document.getElementById("ssidList").innerHTML = document.getElementById("ssidList").innerHTML + msg.ssid + "<br>"
-
+        document.getElementById("ssidList").innerHTML = document.getElementById("ssidList").innerHTML + "<li className='list-group-item'>" + msg.ssid +"</li>"
+        //document.getElementById("ssidList").innerHTML = document.getElementById("ssidList").innerHTML + msg.ssid + "<br>"
       };
 
       websocket.onerror = function(event) {
