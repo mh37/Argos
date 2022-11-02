@@ -9,7 +9,11 @@ The script uses bettercap as the foundation for the base functionality due to it
 
 - Python
 - Scapy-python3
+- Airmon-ng
 - Tornado
 - WiFi Card that supports monitor mode
+
+## Credits 
+This project is a fork of https://github.com/smythtech/WifiProbeMapper, and covered under the MIT license. 
 
 WARNING: The storage of MAC addresses is illegal in most countries and may violate your local data privacy laws. Check your local laws first.
