@@ -8,8 +8,8 @@ The script uses bettercap as the foundation for the base functionality due to it
 ## Requirements
 
 - Python
-- Scapy
-- Bettercap
+- Scapy-python3
+- Tornado
 - WiFi Card that supports monitor mode
 
 WARNING: The storage of MAC addresses is illegal in most countries and may violate your local data privacy laws. Check your local laws first.
