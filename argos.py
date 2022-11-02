@@ -2,6 +2,8 @@
 
 import logging
 
+from scapy.layers.dot11 import Dot11
+
 logging.getLogger("scapy.runtime").setLevel(logging.ERROR)  # Supress scapy warnings
 from scapy.all import *
 import argparse
