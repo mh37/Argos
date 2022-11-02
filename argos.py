@@ -144,6 +144,8 @@ def main():
         os.system("iwconfig")
         params.interface = input("Which interface should be used: ")
 
+    #start the monitoring mode
+    os.system("airmon-ng start " + params.interface)
     print("[+] Getting config from config.js")
     config = getConfig()
 
