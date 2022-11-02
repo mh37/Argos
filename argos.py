@@ -141,6 +141,7 @@ def main():
 
     params = parser.parse_args()
     if (not params.interface):
+        os.system("iwconfig")
         print("[!] Please provide an interface to listen on using the -i option")
         return
 
