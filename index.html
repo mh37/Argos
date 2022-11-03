@@ -3,10 +3,10 @@
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
     <title>Argos</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
     <meta name="viewport" content="initial-scale=1.0">
     <link rel="stylesheet" href="bootstrap/bootstrap.min.css">
     <style>
-
       #pageContainer {
         width: 100%;
         height: 100%;
@@ -14,7 +14,7 @@
 
       #ssidListTitle {
 	    font-size: 18pt;
-        color: #000000;
+        color: #EEEEEE;
       }
 
       #ssidListContainer {
@@ -28,7 +28,7 @@
 
       #map {
         height: 100%;
-        width: 80%;
+        width: 70%;
       }
 
       html, body {
@@ -44,67 +44,71 @@
         <p id="ssidListTitle">SSIDs</p>
         <ul id="ssidList" class="list-group">
         </ul>
-    </div>
-      <div id="map"></div>
+      </div>
+      <div id="map">
+      </div>
     </div>
     &lt;
     <script src="config.js"></script>
     <script type="text/javascript">
-    var map;
-    function initMap() {
-      var centerOn = new google.maps.LatLng(config.defaultLat, config.defaultLong);
-      map = new google.maps.Map(document.getElementById('map'), {
-        center: centerOn,
-        zoom: config.defaultZoom
-      });
+      var map;
 
-      webSocketConnect(map)
-    }
-
-    function webSocketConnect(map) {
-      var serverURL = "ws://" + config.serverIp + ":" + config.serverPort
-      serverURL += "?Upgrade=websocket"
-      websocket = new WebSocket(serverURL)
-
-      //Register event handlers
-      websocket.onopen = function(event) {
-
-      };
-
-      websocket.onclose = function(event) {
-        alert("Websocket connect was lost")
-      };
-
-      websocket.onmessage = function(event) {
-        var msg = JSON.parse(event.data)
-        var loc;
-
-        for(i=0;i<msg.location.length;i++) { //>
-          if(msg.location[i].lat == 0.0 && msg.location[i].lng == 0.0) {
-            loc = new google.maps.LatLng(config.defaultLat, config.defaultLong)
-          } else {
-            loc = new google.maps.LatLng(msg.location[i].lat, msg.location[i].lng)
+      function initMap() {
+        var centerOn = new google.maps.LatLng(config.defaultLat, config.defaultLong);
+        map = new google.maps.Map(
+          document.getElementById('map'),
+          { //mapOptions
+            center: centerOn,
+            zoom: config.defaultZoom
           }
-          var marker = new google.maps.Marker({
-                  label: msg.ssid,
-                  position: loc,
-                  map: map
-          });
-        }
+        );
+        webSocketConnect(map)
+      }
 
-        document.getElementById("ssidList").innerHTML = document.getElementById("ssidList").innerHTML + "<li className='list-group-item'>" + msg.ssid +"</li>"
-      };
+      function webSocketConnect(map) {
+        var serverURL = "ws://" + config.serverIp + ":" + config.serverPort
+        serverURL += "?Upgrade=websocket"
+        websocket = new WebSocket(serverURL)
 
-      websocket.onerror = function(event) {
-        var error = event.data
-      };
-    }
+        //Register event handlers
+        websocket.onopen = function(event) {
 
-    var script = document.createElement('script')
-    script.async = true
-    script.defer = true
-    script.src = "https://maps.googleapis.com/maps/api/js?key=" + config.googleMapsAPIKey + "&callback=initMap"
-    document.body.appendChild(script);
+        };
+
+        websocket.onclose = function(event) {
+          alert("Websocket connect was lost")
+        };
+
+        websocket.onmessage = function(event) {
+          var msg = JSON.parse(event.data)
+          var loc;
+
+          for(i=0;i<msg.location.length;i++) { //>
+            if(msg.location[i].lat == 0.0 && msg.location[i].lng == 0.0) {
+              loc = new google.maps.LatLng(config.defaultLat, config.defaultLong)
+            } else {
+              loc = new google.maps.LatLng(msg.location[i].lat, msg.location[i].lng)
+            }
+            var marker = new google.maps.Marker({
+                    label: msg.ssid,
+                    position: loc,
+                    map: map
+            });
+          }
+          //add a new item to the SSID list
+          document.getElementById("ssidList").innerHTML = document.getElementById("ssidList").innerHTML + "<li className='list-group-item'>" + msg.ssid +"</li>"
+        };
+
+        websocket.onerror = function(event) {
+          var error = event.data
+        };
+      }
+
+      var script = document.createElement('script')
+      script.async = true
+      script.defer = true
+      script.src = "https://maps.googleapis.com/maps/api/js?key=" + config.googleMapsAPIKey + "&callback=initMap"
+      document.body.appendChild(script);
 
   </script>
   </body>
