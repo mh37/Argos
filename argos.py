@@ -70,6 +70,7 @@ class FrameHandler:
             except Exception as e:
                 pass  # Ignore exceptions
 
+    # API Call to WIGLE.NET to obtain geolocation of SSIDS
     def getLocation(self, ssid):
         locations = []
         try:
@@ -119,13 +120,14 @@ class FrameHandler:
 
 def sniffer(context):
     frameHandler = FrameHandler(context, getConfig(), params.write)
-    print("[+] Listening for probe requests on interface " + params.interface + "...")
+    print("[#] Monitoring for probe requests on NIC: " + params.interface + "...")
     if (params.write is not None):
-        print("[+] Copying output to " + params.write)
-    print("[+] Use ctrl+c to stop")
+        print("[#] Saving output to: " + params.write)
+        print("[WARNING] The captured data falls under GDPR rules.")
+    print("[?] Ctrl+c to terminate")
     sniff(iface=params.interface, prn=frameHandler.handler, store=0)
     ioloop.IOLoop.instance().stop()
-    print("[+] Stopped.")
+    print("[!] Monitoring Stopped.")
 
 
 def getConfig():
@@ -139,16 +141,20 @@ def main():
     global params
     parser = argparse.ArgumentParser(description="DESCRIPTION")
     parser.add_argument('-i', '--interface', help="interface to capture on")
+    # Warning, storage of MAC addresses falls under GDPR regulations
     parser.add_argument('-w', '--write', help="Write data to file")
-
     params = parser.parse_args()
+
+    print("Argos")
+    print("'''''''''''''")
+    # Check if we recieved the interface as a parameter
     if (not params.interface):
         os.system("iwconfig")
         params.interface = input("Which interface should be used: ")
 
-    #start the monitoring mode
+    # start the NIC monitoring mode with the help of airmon
     os.system("airmon-ng start " + params.interface)
-    print("[+] Getting config from config.js")
+    print("[#] Loading configuration from config.js")
     config = getConfig()
 
     if (len(config["whitelist"]) > 0 and len(config["blacklist"]) > 0):
@@ -156,12 +162,12 @@ def main():
             "[!] There is a whitelist and blacklist set. This might lead to some unexpected behaviour! Please use only the whitelist or only the blacklist.")
         exit(0)
 
-    print("[+] Setting up web socket server...")
+    print("[#] Starting the web socket server...")
     app = web.Application([(r'/', WebSocketSever), ])
 
     http_server = httpserver.HTTPServer(app)
     http_server.listen(config["serverPort"])
-    print("[+] Web socket ready")
+    print("[#] Web socket ready")
 
     ioloop.IOLoop.instance().start()
 
