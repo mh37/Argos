@@ -13,26 +13,24 @@ from http.client import HTTPSConnection
 import urllib
 from tornado import websocket, web, httpserver, ioloop
 
-
-# Code is based on https://github.com/smythtech/WifiProbeMapper
 class WebSocketSever(websocket.WebSocketHandler):
 
     def check_origin(self, origin):
         return True
 
     def open(self):
-        print("[+] Client connected")
+        print("[i] Client connected")
         try:
             sniffer(self)
         except PermissionError as e:
-            print("[!] Got permission error. Run as root!")
+            print("[!] Permissions insufficient. Run as root!")
             ioloop.IOLoop.instance().stop()
 
     def on_message(self, message):
-        print("[+] Got message: " + str(message))
+        print("[i] Message: " + str(message))
 
     def on_close(self):
-        print("[-] Connection closed")
+        print("[!] Connection terminated.")
 
 
 class FrameHandler:
@@ -85,7 +83,7 @@ class FrameHandler:
             data = data.replace("true", "\"True\"").replace("false", "\"False\"")
             dataJson = json.loads(data)
             if (dataJson['success'] == "False" and dataJson['error'] == "too many queries today"):
-                print("[!] WIGLE API QUERY LIMIT REACHED. Sending  coordinates 0.0 0.0")
+                print("[!] WIGLE API LIMIT REACHED. Sending  coordinates 0.0 0.0")
                 locations.append({})
                 locations[len(locations) - 1]['lat'] = 0.0
                 locations[len(locations) - 1]['lng'] = 0.0
@@ -99,7 +97,7 @@ class FrameHandler:
                     locations[len(locations) - 1]['lng'] = dataJson['results'][r]['trilong']
                 return locations
         except Exception as e:
-            print("[!] Error getting lat and long for " + ssid)
+            print("[!] Error retrieving lat and long for " + ssid)
             print(e)
             print("Response: " + data)
 
@@ -121,11 +119,11 @@ class FrameHandler:
 
 def sniffer(context):
     frameHandler = FrameHandler(context, getConfig(), params.write)
-    print("[#] Monitoring for probe requests on NIC: " + params.interface + "...")
+    print("[i] Monitoring for probe requests on NIC: " + params.interface + "...")
     if (params.write is not None):
         print("[#] Saving output to: " + params.write)
         print("[WARNING] The captured data falls under GDPR rules.")
-    print("[?] Ctrl+c to terminate")
+    print("[i] Ctrl+c to terminate")
     sniff(iface=params.interface, prn=frameHandler.handler, store=0)
     ioloop.IOLoop.instance().stop()
     print("[!] Monitoring Stopped.")
@@ -155,7 +153,7 @@ def main():
 
     # start the NIC monitoring mode with the help of airmon
     os.system("airmon-ng start " + params.interface)
-    print("[#] Loading configuration from config.js")
+    print("[i] Loading configuration from config.js")
     config = getConfig()
 
     if (len(config["whitelist"]) > 0 and len(config["blacklist"]) > 0):
@@ -163,12 +161,12 @@ def main():
             "[!] There is a whitelist and blacklist set. This might lead to some unexpected behaviour! Please use only the whitelist or only the blacklist.")
         exit(0)
 
-    print("[#] Starting the web socket server...")
+    print("[i] Starting the web socket server...")
     app = web.Application([(r'/', WebSocketSever), ])
 
     http_server = httpserver.HTTPServer(app)
     http_server.listen(config["serverPort"])
-    print("[#] Web socket ready")
+    print("[i] Web socket ready")
 
     ioloop.IOLoop.instance().start()
 
