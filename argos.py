@@ -109,13 +109,13 @@ class FrameHandler:
         try:
             self.seen.append(hashlib.md5(str(info).encode('utf-8')).hexdigest())
         except:
-            print("[!] Error. Could not add SSID to seen probes")
+            print("[!] Error. Could not add SSID to History")
 
     def checkDuplicate(self, info):
         try:
             return (hashlib.md5(str(info).encode('utf-8')).hexdigest() in self.seen)
         except:
-            print("[!] Error. Could not check if SSID has been seen")
+            print("[!] Error. Could not check if the SSID is known")
             return True
 
 
