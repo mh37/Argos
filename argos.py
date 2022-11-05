@@ -13,7 +13,8 @@ from http.client import HTTPSConnection
 import urllib
 from tornado import websocket, web, httpserver, ioloop
 
-#Code is based on https://github.com/smythtech/WifiProbeMapper
+
+# Code is based on https://github.com/smythtech/WifiProbeMapper
 class WebSocketSever(websocket.WebSocketHandler):
 
     def check_origin(self, origin):
