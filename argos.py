@@ -31,6 +31,9 @@ class WebSocketSever(websocket.WebSocketHandler):
 
     def on_close(self):
         print("[!] Connection terminated.")
+        # restart network manager service
+        os.system("sudo service NetworkManager restart")
+
 
 
 class FrameHandler:
