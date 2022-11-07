@@ -151,6 +151,8 @@ def main():
         os.system("iwconfig")
         params.interface = input("Which interface should be used: ")
 
+    # kill processes that might interfere with the monitoring mode
+    os.system("sudo airmon-ng check kill")
     # start the NIC monitoring mode with the help of airmon
     os.system("airmon-ng start " + params.interface)
     print("[i] Loading configuration from config.js")
