@@ -13,6 +13,9 @@ In my specific use-case, the purpose is to showcase how much data and informatio
 - Airmon-ng
 - Wi-Fi Card that supports monitor mode
 
+## Troubleshooting
+### Channel hopping isn't working
+Make sure your driver installation is correct. Incorrect installations or driver versions can cause the issues with the channel hopping. Make sure that the driver supports monitoring mode and other advanced features that you require. As example a driver like this https://github.com/aircrack-ng/rtl8812au
 ## Credits 
 This project is a fork of https://github.com/smythtech/WifiProbeMapper, and covered under the MIT license. 
 
