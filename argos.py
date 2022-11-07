@@ -154,13 +154,13 @@ def main():
     # kill processes that might interfere with the monitoring mode
     os.system("sudo airmon-ng check kill")
     # start the NIC monitoring mode with the help of airmon
-        # os.system("airmon-ng start " + params.interface)
+    os.system("airmon-ng start " + params.interface)
     # Manually set the NIC to monitoring mode
-    os.system("sudo iw dev " + params.interface + " set type monitor")
+    #os.system("sudo iw dev " + params.interface + " set type monitor")
     # Set the NIC to up
-    os.system("sudo ip link set " + params.interface + " up")
+    #os.system("sudo ip link set " + params.interface + " up")
     # Set the TX power value for the selected NIC
-    os.system("sudo iw " + params.interface + " set txpower fixed 3000")
+    #os.system("sudo iw " + params.interface + " set txpower fixed 3000")
     print("[i] Loading configuration from config.js")
     config = getConfig()
 
