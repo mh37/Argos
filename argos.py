@@ -148,7 +148,7 @@ def main():
     print("'''''''''''''")
     # Check if we recieved the interface as a parameter
     if (not params.interface):
-        os.system("iwconfig")
+        os.system("iw")
         params.interface = input("Which interface should be used: ")
 
     # kill processes that might interfere with the monitoring mode
