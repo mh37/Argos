@@ -9,5 +9,4 @@ var config = {
                 "whitelist": [],
                 "blacklist": ["eduroam", "HHWlan", "HaagaHeliaPublic"]
               }
-
-              //Use Blacklist or Whitelist, but not both
+  
