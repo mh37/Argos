@@ -14,11 +14,14 @@ In short this tool utilizes passive WiFi tracking and profiling based on probefr
 - Wi-Fi Card that supports monitor mode
   - Realtek RTL8814AU Driver
 
-## Troubleshooting
+## FAQ and Troubleshooting
 ### Driver issues
 Make sure your driver installation is correct. Incorrect installations or driver versions can cause multiple issues in terms of functionality. Make sure that the driver supports monitoring mode and other advanced features that you require. 
 
 In my case I use the following one: https://gitlab.com/kalilinux/packages/realtek-rtl8814au-dkms you can also find a copy of it in this repository in case that this link goes down. Depending on your distro and if you face issues you can also try the following one: https://github.com/aircrack-ng/rtl8812au
+
+### The web interface or the map feature doesn't work
+Check that the config file has the correct parameters and API keys Wigle and Google Maps
 
 ## Credits 
 This project is a fork of https://github.com/smythtech/WifiProbeMapper, and covered under the MIT license. 
