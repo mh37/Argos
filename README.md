@@ -1,7 +1,7 @@
 # Argos
-This tool provides passive WiFi tracking and profiling based on probeframe data. This is ideal for recon and vareous other applications. 
+This tool serves the purpose to showcase the amount of data a Wi-Fi enabled device might reveal about the user. It does so by capturing probe frames, extracting the SSID value, send it to Wigle to retrieve geographic information of the SSID location, and then show it on a Map with the help of the Google Maps API. 
 
-In my specific use-case, the purpose is to showcase how much data and information a persons WiFi capable device reveals without their knowledge.
+In short this tool utilizes passive WiFi tracking and profiling based on probeframe data. You can choose to save captured data, but depending on your local laws this might be infringing on data privacy laws. 
 
 
 ## Requirements
@@ -12,10 +12,14 @@ In my specific use-case, the purpose is to showcase how much data and informatio
   - Tornado
 - Airmon-ng
 - Wi-Fi Card that supports monitor mode
+  - Realtek RTL8814AU Driver
 
 ## Troubleshooting
-### Channel hopping isn't working
-Make sure your driver installation is correct. Incorrect installations or driver versions can cause the issues with the channel hopping. Make sure that the driver supports monitoring mode and other advanced features that you require. As example a driver like this https://github.com/aircrack-ng/rtl8812au
+### Driver issues
+Make sure your driver installation is correct. Incorrect installations or driver versions can cause multiple issues in terms of functionality. Make sure that the driver supports monitoring mode and other advanced features that you require. 
+
+In my case I use the following one: https://gitlab.com/kalilinux/packages/realtek-rtl8814au-dkms you can also find a copy of it in this repository in case that this link goes down. Depending on your distro and if you face issues you can also try the following one: https://github.com/aircrack-ng/rtl8812au
+
 ## Credits 
 This project is a fork of https://github.com/smythtech/WifiProbeMapper, and covered under the MIT license. 
 

@@ -1,0 +1,62 @@
+realtek-rtl8814au-dkms (5.8.5.1~git20220905.3f2f680-0kali1) kali-dev; urgency=medium
+
+  [ Arnaud Rebillout ]
+  * No more dh-exec (requires compat 13)
+  * Switch to dh-sequence-dkms
+  * Set PACKAGE_VERSION in override_dh_dkms
+
+  [ Sophie Brun ]
+  * New upstream version 5.8.5.1~git20220905.3f2f680
+  * Add info in patch
+  * Bump Standards-Version to 4.6.1 (no change)
+
+ -- Sophie Brun <sophie@offensive-security.com>  Thu, 06 Oct 2022 14:33:01 +0200
+
+realtek-rtl8814au-dkms (5.8.5.1~git20220614.af00239-0kali3) kali-dev; urgency=medium
+
+  * Adapt dkms.conf for Kali
+
+ -- Sophie Brun <sophie@offensive-security.com>  Tue, 21 Jun 2022 11:16:43 +0200
+
+realtek-rtl8814au-dkms (5.8.5.1~git20220614.af00239-0kali2) kali-dev; urgency=medium
+
+  * Remove useless patch (version changed in debian/rules)
+
+ -- Sophie Brun <sophie@offensive-security.com>  Tue, 21 Jun 2022 10:55:10 +0200
+
+realtek-rtl8814au-dkms (5.8.5.1~git20220614.af00239-0kali1) kali-dev; urgency=medium
+
+  * New upstream version 5.8.5.1~git20220614.af00239
+  * Add missing depend bc
+
+ -- Sophie Brun <sophie@offensive-security.com>  Tue, 21 Jun 2022 09:42:10 +0200
+
+realtek-rtl8814au-dkms (5.8.5.1~git20220221.a538e38-0kali1) kali-dev; urgency=medium
+
+  * Update debian/watch for new upstream repo
+  * New upstream version 5.8.5.1~git20220221.a538e38
+  * Refresh patches (drop patch for kernel 5.15, fixed by upstream)
+
+ -- Sophie Brun <sophie@offensive-security.com>  Thu, 12 May 2022 10:17:23 +0200
+
+realtek-rtl8814au-dkms (5.8.5.1~git20210730.824d1d2-0kali2) kali-dev; urgency=medium
+
+  * Add a patch to fix compilation with kernel 5.15
+
+ -- Sophie Brun <sophie@offensive-security.com>  Tue, 14 Dec 2021 17:32:14 +0100
+
+realtek-rtl8814au-dkms (5.8.5.1~git20210730.824d1d2-0kali1) kali-dev; urgency=medium
+
+  * Change the upstream repo
+  * New upstream version 5.8.5.1~git20210730.824d1d2
+  * Add a patch to fix version in dkms.conf
+  * Fix lintian-overrides
+  * Bump Standards-Version to 4.6.0
+
+ -- Sophie Brun <sophie@offensive-security.com>  Tue, 28 Sep 2021 12:10:46 +0200
+
+realtek-rtl8814au-dkms (5.8.5.1~git20210331.bdf80b5-0kali1) kali-dev; urgency=medium
+
+    * Initial release (see 7193)
+
+ -- Sophie Brun <sophie@offensive-security.com>  Tue, 25 May 2021 11:05:39 +0200

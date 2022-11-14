@@ -1,0 +1,18 @@
+Source: realtek-rtl8814au-dkms
+Section: contrib/kernel
+Priority: optional
+Maintainer: Kali Developers <devel@kali.org>
+Uploaders: Sophie Brun <sophie@offensive-security.com>
+Build-Depends: debhelper-compat (= 13), dh-sequence-dkms
+Standards-Version: 4.6.1
+Homepage: https://github.com/morrownr/8814au
+Vcs-Browser: https://gitlab.com/kalilinux/packages/realtek-rtl8814au-dkms
+Vcs-Git: https://gitlab.com/kalilinux/packages/realtek-rtl8814au-dkms.git
+
+Package: realtek-rtl8814au-dkms
+Architecture: all
+Depends: dkms (>= 1.95), ${misc:Depends}, bc
+Description: Realtek RTL8814AU driver in DKMS format
+ This package provides the source code for RTL8814AU Linux driver (with monitor
+ mode and frame injection) to be build with dkms. Kernel sources or headers are
+ required to compile this module.

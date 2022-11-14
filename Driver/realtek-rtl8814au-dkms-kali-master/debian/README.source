@@ -1,0 +1,9 @@
+realtek-rtl8814au-dkms for Kali
+-------------------------------
+
+The source can be found here:
+ https://github.com/aircrack-ng/rtl8814au
+
+Currently we are using branch 5.8.5.1
+
+ -- Sophie Brun <sophie@offensive-security.com>
