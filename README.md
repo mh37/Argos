@@ -3,6 +3,8 @@ This tool serves the purpose to showcase the amount of data a Wi-Fi enabled devi
 
 In short this tool utilizes passive WiFi tracking and profiling based on probe request frames. You can choose to save captured data, but depending on your local laws this might be infringing on data privacy laws. 
 
+Probe requests are usually sent by the clients on all channels, still this tool will be hopping through different all channels to cover the full spectrum of the 2.4GHz and 5GHz frequencies. 
+
 
 ## Requirements
 
