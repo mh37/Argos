@@ -23,7 +23,7 @@ class WebSocketSever(websocket.WebSocketHandler):
         try:
             sniffer(self)
         except PermissionError as e:
-            print("[!] Permissions insufficient. Run as root!")
+            print("[!] Run as root!")
             ioloop.IOLoop.instance().stop()
 
     def on_message(self, message):
@@ -31,10 +31,6 @@ class WebSocketSever(websocket.WebSocketHandler):
 
     def on_close(self):
         print("[!] Connection terminated.")
-        # restart network manager service
-        os.system("sudo service NetworkManager restart")
-
-
 
 class FrameHandler:
     callback = None
@@ -130,6 +126,8 @@ def sniffer(context):
     sniff(iface=params.interface, prn=frameHandler.handler, store=0)
     ioloop.IOLoop.instance().stop()
     print("[!] Monitoring Stopped.")
+    # restart network manager service
+    # os.system("sudo service NetworkManager restart")
 
 
 def getConfig():
@@ -154,8 +152,6 @@ def main():
         os.system("iwconfig")
         params.interface = input("Which interface should be used: ")
 
-    # kill processes that might interfere with the monitoring mode
-    # os.system("sudo airmon-ng check kill")
     # start the NIC monitoring mode with the help of airmon
     os.system("airmon-ng start " + params.interface)
     # Manually set the NIC to monitoring mode
