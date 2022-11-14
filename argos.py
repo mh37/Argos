@@ -55,6 +55,7 @@ class FrameHandler:
                     info = {}
                     info['device'] = frame.addr2
                     info['ssid'] = probeSSID
+                    info['vendor'] = checkVendor(frame.addr2)
                     if (len(self.config["whitelist"]) > 0 and (info['ssid'] not in self.config["whitelist"])):
                         return
                     if (len(self.config["blacklist"]) > 0 and (info['ssid'] in self.config["blacklist"])):
@@ -118,6 +119,13 @@ class FrameHandler:
             print("[!] Error. Could not check if the SSID is known")
             return True
 
+def checkVendor(mac):
+        with open('vendors.txt','r') as f:
+            for line in f:
+                l = line.split('\t')
+                if l[0].lower() in mac.replace(':','') :
+                    return l[1].strip()
+        return 'N/A'
 
 def sniffer(context):
     frameHandler = FrameHandler(context, getConfig(), params.write)
@@ -127,7 +135,7 @@ def sniffer(context):
         print("[WARNING] The captured data falls under GDPR rules.")
     print("[i] Ctrl+c to terminate")
     sniff(iface=params.interface, prn=frameHandler.handler, store=0)
-    
+
     # start a thread to hop between channels
     threading.Thread(target=hopChannel).start()
 
