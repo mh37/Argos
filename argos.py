@@ -2,7 +2,7 @@
 
 import logging
 
-from scapy.layers.dot11 import Dot11
+from scapy.layers.dot11 import Dot11ProbeReq
 
 logging.getLogger("scapy.runtime").setLevel(logging.ERROR)  # Supress scapy warnings
 from scapy.all import *
@@ -48,7 +48,7 @@ class FrameHandler:
         self.outFile = out
 
     def handler(self, frame):
-        if (frame.haslayer(Dot11) and (frame.type == 0x0 or frame.type == 0x04)):
+        if (frame.haslayer(Dot11ProbeReq) and (frame.type == 0x0 or frame.type == 0x04)):
             try:
                 probeSSID = str(frame.info)[2:-1]
                 if (len(probeSSID) > 0):
