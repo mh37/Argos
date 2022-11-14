@@ -127,6 +127,10 @@ def sniffer(context):
         print("[WARNING] The captured data falls under GDPR rules.")
     print("[i] Ctrl+c to terminate")
     sniff(iface=params.interface, prn=frameHandler.handler, store=0)
+    
+    # start a thread to hop between channels
+    threading.Thread(target=hopChannel).start()
+
     ioloop.IOLoop.instance().stop()
     print("[!] Monitoring Stopped.")
     # restart network manager service
