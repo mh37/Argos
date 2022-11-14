@@ -1,7 +1,7 @@
 # Argos
-This tool serves the purpose to showcase the amount of data a Wi-Fi enabled device might reveal about the user. It does so by capturing probe frames, extracting the SSID value, send it to Wigle to retrieve geographic information of the SSID location, and then show it on a Map with the help of the Google Maps API. 
+This tool serves the purpose to showcase the amount of data a Wi-Fi enabled device might reveal about the user. It does so by capturing probe request frames, extracting the SSID value, send it to Wigle to retrieve geographic information of the SSID location, and then show it on a Map with the help of the Google Maps API. 
 
-In short this tool utilizes passive WiFi tracking and profiling based on probeframe data. You can choose to save captured data, but depending on your local laws this might be infringing on data privacy laws. 
+In short this tool utilizes passive WiFi tracking and profiling based on probe request frames. You can choose to save captured data, but depending on your local laws this might be infringing on data privacy laws. 
 
 
 ## Requirements
