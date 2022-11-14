@@ -97,7 +97,7 @@
             });
           }
           //add a new item to the SSID list
-          document.getElementById("ssidList").innerHTML = document.getElementById("ssidList").innerHTML + "<li className='list-group-item'>" + msg.ssid +"</li>"
+          document.getElementById("ssidList").innerHTML = document.getElementById("ssidList").innerHTML + "<li className='list-group-item'>" + msg.ssid + " - " + msg.vendor +"</li>"
         };
 
         websocket.onerror = function(event) {
