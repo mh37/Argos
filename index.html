@@ -12,12 +12,7 @@
         height: 100%;
       }
 
-      #ssidListTitle {
-	    font-size: 18pt;
-        text-align: center;
-      }
-
-      #ssidListContainer {
+      #ssidTableContainer {
         float: left;
         overflow: auto;
         width: 30%;
@@ -26,6 +21,7 @@
 
       #header {
         text-align: center;
+        color: white;
       }
 
       #map {
@@ -33,10 +29,21 @@
         width: 70%;
       }
 
+      .footer {
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        color: white;
+        text-align: center;
+        background-color: rgb(32, 32, 32);
+      }
+
       html, body {
         height: 100%;
         margin: 0;
         padding: 0;
+        background-color: rgb(32, 32, 32);
       }
     </style>
   </head>
@@ -44,15 +51,25 @@
     <div id="header">
       <h1>Argos</h1></div>
     <div id="pageContainer">
-      <div id="ssidListContainer">
-        <p id="ssidListTitle">SSIDs</p>
-        <ul id="ssidList" class="list-group">
-        </ul>
+      <div id="ssidTableContainer">
+        <table class="table table-hover table-dark">
+          <thead>
+            <tr>
+              <th scope="col">SSID</th>
+              <th scope="col">Vendor</th>
+            </tr>
+          </thead>
+          <tbody id="ssidList">
+          </tbody>
+        </table>
       </div>
       <div id="map">
       </div>
     </div>
     &lt;
+    <div class="footer">
+      <p>Copyright 2022, Argos. <a href="https://github.com/mh37/Argos">GitHub</a> </p>
+    </div>
     <script src="config.js"></script>
     <script type="text/javascript">
       var map;
@@ -80,7 +97,7 @@
         };
 
         websocket.onclose = function(event) {
-          alert("Websocket connect was lost")
+          alert("Websocket connection closed")
         };
 
         websocket.onmessage = function(event) {
@@ -100,7 +117,7 @@
             });
           }
           //add a new item to the SSID list
-          document.getElementById("ssidList").innerHTML = document.getElementById("ssidList").innerHTML + "<li className='list-group-item'>" + msg.ssid + " - " + msg.vendor +"</li>"
+          document.getElementById("ssidList").innerHTML = document.getElementById("ssidList").innerHTML + "<tr><td>" + msg.ssid + "</td><td>" + msg.vendor +"</td></tr>"
         };
 
         websocket.onerror = function(event) {
