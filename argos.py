@@ -138,7 +138,7 @@ def sniffer(context):
     sniff(iface=params.interface, prn=frameHandler.handler, store=0)
 
     # FOR TESTING ONLY, start a thread to hop between channels. Should theoretically not be required for probe requests since they are sent on all channels
-    threading.Thread(target=hopChannel).start()
+    # threading.Thread(target=hopChannel).start()
 
     ioloop.IOLoop.instance().stop()
     print("[!] Monitoring Stopped.")
