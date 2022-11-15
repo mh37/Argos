@@ -142,7 +142,7 @@ def sniffer(context):
 
     ioloop.IOLoop.instance().stop()
     print("[!] Monitoring Stopped.")
-    # restart network manager service
+    # restart network manager service / not needed for airmon-ng 
     # os.system("sudo service NetworkManager restart")
 
 def hopChannel():
