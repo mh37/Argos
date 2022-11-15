@@ -7,6 +7,6 @@ var config = {
                 "wigleAuthToken": "<WIGLE_API_TOKEN_IN_BASE64>",
                 "googleMapsAPIKey": "<GOOGLE_MAPS_API_KEY>",
                 "whitelist": [],
-                "blacklist": ["eduroam", "HHWlan", "HaagaHeliaPublic"]
+                "blacklist": []
               }
   
