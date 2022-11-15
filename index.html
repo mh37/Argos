@@ -19,6 +19,7 @@
           <thead>
             <tr>
               <th scope="col">SSID</th>
+              <th scope="col">Device</th>
               <th scope="col">Vendor</th>
             </tr>
           </thead>
@@ -80,7 +81,7 @@
             });
           }
           //add a new item to the SSID list
-          document.getElementById("ssidList").innerHTML = document.getElementById("ssidList").innerHTML + "<tr><td>" + msg.ssid + "</td><td>" + msg.vendor +"</td></tr>"
+          document.getElementById("ssidList").innerHTML = document.getElementById("ssidList").innerHTML + "<tr><td>" + msg.ssid + "</td><td>" + msg.device + "</td><td>" + msg.vendor +"</td></tr>"
         };
 
         websocket.onerror = function(event) {
