@@ -24,6 +24,8 @@ In my case I use the following one: https://gitlab.com/kalilinux/packages/realte
 Check that the config file has the correct parameters and API keys Wigle and Google Maps
 
 ## Credits 
-This project is a fork of https://github.com/smythtech/WifiProbeMapper, and covered under the MIT license. 
+The list with MAC addresses and vendor identities is a direct copy of https://gist.github.com/aallan/b4bb86db86079509e6159810ae9bd3e4 
+
+The initial base of this project was forked from https://github.com/smythtech/WifiProbeMapper. 
 
 WARNING: The storage of MAC addresses is illegal in most countries and may violate your local data privacy laws. Check your local laws first.
