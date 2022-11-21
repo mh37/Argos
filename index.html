@@ -4,6 +4,7 @@
     <meta name="viewport" charset="utf-8" http-equiv="content-type" content="width=device-width, initial-scale=1.0, text/html">
     <title>Argos</title>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <script src="script/jquery-3.6.1.slim.min.js"></script>
     <link rel="stylesheet" href="style/bootstrap.min.css">
     <link rel="stylesheet" href="style/style.css">
   </head>
@@ -14,6 +15,8 @@
       <br />
     <div id="pageContainer">
       <div id="ssidTableContainer">
+        <input class="form-control" id="myInput" type="text" placeholder="Search..">
+        <br>
         <table id="table" class="table table-hover table-dark"   data-filter-control="true" data-show-search-clear-button="true">
           <thead>
             <tr>
@@ -98,6 +101,16 @@
       script.defer = true
       script.src = "https://maps.googleapis.com/maps/api/js?key=" + config.googleMapsAPIKey + "&callback=initMap"
       document.body.appendChild(script);
+
+      //for table filtering
+      $(document).ready(function(){
+      $("#myInput").on("keyup", function() {
+        var value = $(this).val().toLowerCase();
+        $("#myTable tr").filter(function() {
+          $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
+      });
+    });
 
   </script>
   </body>
