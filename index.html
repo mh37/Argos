@@ -4,8 +4,6 @@
     <meta name="viewport" charset="utf-8" http-equiv="content-type" content="width=device-width, initial-scale=1.0, text/html">
     <title>Argos</title>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-    <script src="script/bootstrap-table.min.js"></script>
-    <script src="script/bootstrap-table-filter-control.min.js"></script>
     <link rel="stylesheet" href="style/bootstrap.min.css">
     <link rel="stylesheet" href="style/style.css">
   </head>
@@ -16,13 +14,12 @@
       <br />
     <div id="pageContainer">
       <div id="ssidTableContainer">
-        <table id="table" class="table table-hover table-dark"   data-filter-control="true"
-        data-show-search-clear-button="true">
+        <table id="table" class="table table-hover table-dark"   data-filter-control="true" data-show-search-clear-button="true">
           <thead>
             <tr>
-              <th scope="col">SSID</th>
-              <th scope="col">Device</th>
-              <th scope="col">Vendor</th>
+              <th data-field="ssid" data-filter-control="input" scope="col">SSID</th>
+              <th data-field="device" data-filter-control="input" scope="col">Device</th>
+              <th data-field="vendor" scope="col">Vendor</th>
             </tr>
           </thead>
           <tbody id="ssidList">
