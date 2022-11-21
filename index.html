@@ -15,7 +15,7 @@
       <br />
     <div id="pageContainer">
       <div id="ssidTableContainer">
-        <input class="form-control" id="myInput" type="text" placeholder="Search..">
+        <input class="form-control" id="searchInput" type="text" placeholder="Search..">
         <br>
         <table id="table" class="table table-hover table-dark"   data-filter-control="true" data-show-search-clear-button="true">
           <thead>
@@ -104,9 +104,9 @@
 
       //for table filtering
       $(document).ready(function(){
-      $("#myInput").on("keyup", function() {
+      $("#searchInput").on("keyup", function() {
         var value = $(this).val().toLowerCase();
-        $("#myTable tr").filter(function() {
+        $("#ssidList tr").filter(function() {
           $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
         });
       });
