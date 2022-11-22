@@ -185,7 +185,7 @@ def main():
 
     if (len(config["whitelist"]) > 0 and len(config["blacklist"]) > 0):
         print(
-            "[!] There is a whitelist and blacklist set. This might lead to some unexpected behaviour! Please use only the whitelist or only the blacklist.")
+            "[!] There is a whitelist and blacklist set. This might lead to some unexpected behavior! Please use only the whitelist or only the blacklist.")
         exit(0)
 
     print("[i] Starting the web socket server...")
