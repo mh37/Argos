@@ -47,7 +47,7 @@ One big drawback here is that the free tier of the Wigle API access has a very l
 
 Probe requests that we capture contain the signal strength (RSSI), MAC-Address of the client and the SSID name the client is probing for. We can use the first part of the MAC address to also match this with a vendor.
 
-According to IEEE 802.11-2012 (this is outdated but I do not have access to IEEE 802.11-2020 which is the newest specification) the probe request frame body can contain the following data.
+According to IEEE 802.11-2012 the probe request frame body can contain the data listed below. This standard is outdated, but I do not have access to IEEE 802.11-2020 which is the newest specification. If you do you should find the information on page 843, and I gladly update it here if you can send it to me. 
 
 ### Mandatory
 - SSID
