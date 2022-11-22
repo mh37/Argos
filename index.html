@@ -20,27 +20,13 @@
         <table id="table" class="table table-hover table-dark"   data-filter-control="true" data-show-search-clear-button="true">
           <thead>
             <tr>
+              <th data-field="rssi" data-filter-control="input" scope="col">RSSI</th>
               <th data-field="ssid" data-filter-control="input" scope="col">SSID</th>
               <th data-field="device" data-filter-control="input" scope="col">Device</th>
               <th data-field="vendor" scope="col">Vendor</th>
             </tr>
           </thead>
           <tbody id="ssidList">
-            <tr>
-              <th>KamppiWifi</th>
-              <th>31:78:73:4E:21:05</th>
-              <th>DEMO</th>
-            </tr>
-            <tr>
-              <th>HelsinkiAirport</th>
-              <th>DF:D4:9E:62:88:2C</th>
-              <th>DEMO</th>
-            </tr>
-            <tr>
-              <th>ZurichAirport</th>
-              <th>BE:1B:51:46:34:E8</th>
-              <th>DEMO</th>
-            </tr>
           </tbody>
         </table>
       </div>
@@ -98,7 +84,7 @@
             });
           }
           //add a new item to the SSID list
-          document.getElementById("ssidList").innerHTML = document.getElementById("ssidList").innerHTML + "<tr><td>" + msg.ssid + "</td><td>" + msg.device + "</td><td>" + msg.vendor +"</td></tr>"
+          document.getElementById("ssidList").innerHTML = document.getElementById("ssidList").innerHTML + "<tr><td>" + msg.rssi + "</td><td>" + msg.ssid + "</td><td>" + msg.device + "</td><td>" + msg.vendor +"</td></tr>"
         };
 
         websocket.onerror = function(event) {

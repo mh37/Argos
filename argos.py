@@ -57,7 +57,7 @@ class FrameHandler:
                     info['device'] = frame.addr2
                     info['ssid'] = probeSSID
                     info['vendor'] = checkVendor(frame.addr2)
-                    #info['rssi'] = frame.dBm_AntSignal
+                    info['rssi'] = frame.dBm_AntSignal
                     if (len(self.config["whitelist"]) > 0 and (info['ssid'] not in self.config["whitelist"])):
                         return
                     if (len(self.config["blacklist"]) > 0 and (info['ssid'] in self.config["blacklist"])):
@@ -110,13 +110,13 @@ class FrameHandler:
 
     def addSeen(self, info):
         try:
-            self.seen.append(hashlib.md5(str(info).encode('utf-8')).hexdigest())
+            self.seen.append(hashlib.md5(str(info["device"] +info["ssid"]).encode('utf-8')).hexdigest())
         except:
             print("[!] Error. Could not add SSID to History")
 
     def checkDuplicate(self, info):
         try:
-            return (hashlib.md5(str(info).encode('utf-8')).hexdigest() in self.seen)
+            return (hashlib.md5(str(info["device"] +info["ssid"]).encode('utf-8')).hexdigest() in self.seen)
         except:
             print("[!] Error. Could not check if the SSID is known")
             return True
