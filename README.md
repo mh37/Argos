@@ -6,6 +6,8 @@ In short this tool utilizes passive WiFi tracking and profiling based on probe r
 
 ## Screenshots
 
+Below you can an example of the tool in action. We are filtering here by signal strenght to cherry pick a target out of a location with many devices. We managed to isolate three devices (MAC addresses) that have an identical signal strenght, and map the captured SSIDs through Wigle to a residential address, a cafe, and a local university. The rest could't be assigned to coordinates but is still of high value information. As example the device that pinged for the before mentioned locations was also sending a probe request for an SSID that was called IPhone (First Name of the person). Now we know that the person is using an IPhone, what their name and address is, where they might buy their coffee, and where they go to school.
+
 ![Web UI](https://github.com/mh37/Argos/blob/Development/Reports/Pictures/argos-webUI.png?raw=true)
 
 ## Requirements
