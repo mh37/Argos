@@ -6,7 +6,7 @@ In short this tool utilizes passive WiFi tracking and profiling based on probe r
 
 ## Screenshots
 
-![Web UI](https://github.com/mh37/Argos/Reports/Pictures/argos-webUI.png?raw=true)
+![Web UI](https://github.com/mh37/Argos/blob/Development/Reports/Pictures/argos-webUI.png?raw=true)
 
 ## Requirements
 
