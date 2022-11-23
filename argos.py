@@ -112,13 +112,13 @@ class FrameHandler:
         try:
             self.seen.append(hashlib.md5(str(info["device"] +info["ssid"]).encode('utf-8')).hexdigest())
         except:
-            print("[!] Error. Could not add SSID to History")
+            print("[!] Error. SSID was not stored successfully")
 
     def checkDuplicate(self, info):
         try:
             return (hashlib.md5(str(info["device"] +info["ssid"]).encode('utf-8')).hexdigest() in self.seen)
         except:
-            print("[!] Error. Could not check if the SSID is known")
+            print("[!] Error. SSID duplicate check failed")
             return True
 
 def checkVendor(mac):
@@ -134,7 +134,7 @@ def sniffer(context):
     print("[i] Monitoring for probe requests on NIC: " + params.interface + "...")
     if (params.write is not None):
         print("[#] Saving output to: " + params.write)
-        print("[WARNING] The captured data falls under GDPR rules.")
+        print("[WARNING] Storing the captured data violates GDPR rules. Check your data privacy laws.")
     print("[i] Ctrl+c to terminate")
     sniff(iface=params.interface, prn=frameHandler.handler, store=0)
 
@@ -185,7 +185,7 @@ def main():
 
     if (len(config["whitelist"]) > 0 and len(config["blacklist"]) > 0):
         print(
-            "[!] There is a whitelist and blacklist set. This might lead to some unexpected behavior! Please use only the whitelist or only the blacklist.")
+            "[!] Please use only the whitelist or the blacklist, not both.")
         exit(0)
 
     print("[i] Starting the web socket server...")
