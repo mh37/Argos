@@ -30,7 +30,7 @@ Below you can an example of the tool in action. We are filtering here by signal 
 - Dynamic filtering of output data
 - Saving of recorded data (WARNING: This may be illegal in your country)
 
-## Weaknesses
+## Limitations and TODO list
 
 - Very limited API calls with Wigle free tier
 - Newer devices are a lot more careful with their probe requests
