@@ -12,7 +12,7 @@ Below you can an example of the tool in action. We are filtering here by signal 
 
 ## Hardware Used
 
-- A laptop with Kali Linux
+- An old laptop with Kali Linux
   - Or a Raspberry Pi for more long term or low profile recording.
 - Alfa AC1900 WiFi Adapter (highly recommended for optimal performance)
   - Also works on some Intel AC WiFi cards which are common on modern laptops but your milage may vary. It worked when I tested it on a Intel AC 9560
