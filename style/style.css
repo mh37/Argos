@@ -6,7 +6,7 @@
   #ssidTableContainer {
     float: left;
     overflow: auto;
-    width: 30%;
+    width: 40%;
     height: 100%;
   }
 
@@ -17,7 +17,7 @@
 
   #map {
     height: 100%;
-    width: 70%;
+    width: 60%;
   }
 
   .footer {
