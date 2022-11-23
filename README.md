@@ -10,6 +10,14 @@ Below you can an example of the tool in action. We are filtering here by signal 
 
 ![Web UI](https://github.com/mh37/Argos/blob/Development/Reports/Pictures/argos-webUI.png?raw=true)
 
+## Hardware Used
+
+- A laptop with Kali Linux
+  - Or a Raspberry Pi for more long term or low profile recording.
+- Alfa AC1900 WiFi Adapter (highly recommended for optimal performance)
+  - Also works on some Intel AC WiFi cards which are common on modern laptops but your milage may vary. It worked when I tested it on a Intel AC 9560
+  - I heard that with a modified driver you can also run the wireless NIC of some Raspberry Pi models in monitoring mode. But I did not test this.
+
 ## Requirements
 
 - Python3
@@ -22,6 +30,7 @@ Below you can an example of the tool in action. We are filtering here by signal 
 
 ## Core Functionality
 
+- Web Interface (so we can access the tool even if we are not near our monitoring device)
 - Scan for probe requests
 - Ignore duplicate requests
 - Utilize Blacklist and Whitelist for SSIDs
