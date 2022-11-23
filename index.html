@@ -85,6 +85,13 @@
           }
           //add a new item to the SSID list
           document.getElementById("ssidList").innerHTML = document.getElementById("ssidList").innerHTML + "<tr><td>" + msg.rssi + "</td><td>" + msg.ssid + "</td><td>" + msg.device + "</td><td>" + msg.vendor +"</td></tr>"
+          
+          //refresh filtering for the new content
+          var value = $(this).val().toLowerCase();
+          $("#ssidList tr").filter(function() {
+            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+          });
+
         };
 
         websocket.onerror = function(event) {
