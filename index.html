@@ -19,6 +19,7 @@
     <div id="pageContainer">
       <div id="ssidTableContainer">
         <br>
+        <div id="myGrid" style="height: 200px" class="ag-theme-alpine"></div>
         <table id="table" class="table table-hover table-dark"   data-filter-control="true" data-show-search-clear-button="true">
           <thead>
             <tr>
@@ -29,30 +30,6 @@
             </tr>
           </thead>
           <tbody id="ssidList">
-            <tr>
-              <td>-80</td>
-              <td>test</td>
-              <td>test</td>
-              <td>test</td>
-            </tr>
-            <tr>
-              <td>-80</td>
-              <td>test</td>
-              <td>test</td>
-              <td>test</td>
-            </tr>
-            <tr>
-              <td>-60</td>
-              <td>test</td>
-              <td>test</td>
-              <td>test</td>
-            </tr>
-            <tr>
-              <td>-50</td>
-              <td>test</td>
-              <td>test</td>
-              <td>test</td>
-            </tr>
           </tbody>
         </table>
       </div>
@@ -65,6 +42,40 @@
     </div>
     <script src="config.js"></script>
     <script type="text/javascript">
+
+
+
+      // Grid Options are properties passed to the grid
+      const gridOptions = {
+      // each entry here represents one column
+      columnDefs: [
+        { field: "rssi" },
+        { field: "ssid" },
+        { field: "device" },
+        { field: "vendor" },
+      ],
+
+      // default col def properties get applied to all columns
+      defaultColDef: {sortable: true, filter: true},
+
+      rowSelection: 'multiple', // allow rows to be selected
+      animateRows: true, // have rows animate to new positions when sorted
+
+      // example event handler
+      onCellClicked: params => {
+        console.log('cell was clicked', params)
+      }
+      };
+
+      // get div to host the grid
+      const eGridDiv = document.getElementById("myGrid");
+      // new grid instance, passing in the hosting DIV and Grid Options
+      new agGrid.Grid(eGridDiv, gridOptions);
+
+
+
+
+
       var map;
 
       function initMap() {
@@ -111,7 +122,7 @@
           }
           //add a new item to the SSID list
           document.getElementById("ssidList").innerHTML = document.getElementById("ssidList").innerHTML + "<tr><td>" + msg.rssi + "</td><td>" + msg.ssid + "</td><td>" + msg.device + "</td><td>" + msg.vendor +"</td></tr>"
-
+          gridOptions.api.setRowData(msg);
         };
 
         websocket.onerror = function(event) {
