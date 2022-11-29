@@ -3,9 +3,6 @@
   <head>
     <meta name="viewport" charset="utf-8" http-equiv="content-type" content="width=device-width, initial-scale=1.0, text/html">
     <title>Argos</title>
-    <script src="script/polyfill.min.js"></script>
-    <script src="script/jquery-3.6.1.slim.min.js"></script>
-    <script src="script/tui-grid.js"></script>
     <link rel="stylesheet" href="style/bootstrap.min.css">
     <link rel="stylesheet" href="style/style.css">
     <link rel="stylesheet" href="style/tui-grid.css" />
@@ -41,10 +38,11 @@
     </div>
     <script src="config.js"></script>
     <script type="text/javascript">
+
+
       const Grid = tui.Grid;
       const instance = new Grid({
         el: document.getElementById('grid'), // Container element
-        data: gridData,
         columns: [
           {
             header: 'RSSI',
@@ -128,10 +126,9 @@
       script.defer = true
       script.src = "https://maps.googleapis.com/maps/api/js?key=" + config.googleMapsAPIKey + "&callback=initMap"
       document.body.appendChild(script);
-
-
-      
-
   </script>
+  <script src="script/polyfill.min.js"></script>
+  <script src="script/jquery-3.6.1.slim.min.js"></script>
+  <script src="script/tui-grid.js"></script>
   </body>
 </html>
