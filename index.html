@@ -5,8 +5,11 @@
     <title>Argos</title>
     <script src="script/polyfill.min.js"></script>
     <script src="script/jquery-3.6.1.slim.min.js"></script>
+    <script src="script/ag-grid-community.min.noStyle.js"></script>
     <link rel="stylesheet" href="style/bootstrap.min.css">
     <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" href="style/ag-grid.css"/>
+    <link rel="stylesheet" href="style/ag-theme-alpine.css"/>
   </head>
   <body>
     <div id="header">
@@ -15,7 +18,6 @@
       <br />
     <div id="pageContainer">
       <div id="ssidTableContainer">
-        <input class="form-control" id="searchInput" type="text" placeholder="Search..">
         <br>
         <table id="table" class="table table-hover table-dark"   data-filter-control="true" data-show-search-clear-button="true">
           <thead>
