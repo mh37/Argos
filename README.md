@@ -4,6 +4,10 @@ This tool serves the purpose to showcase the amount of data a Wi-Fi enabled devi
 
 In short this tool utilizes passive WiFi tracking and profiling based on probe request frames. You can choose to save captured data, but depending on your local laws this might be infringing on data privacy laws.
 
+## Ethics
+
+This tool was only tested in controlled environments under strict ethic guidelines, and with the explicit permission of the device owners. If you want to do the same you can find a template of a consent form in this repository.  
+
 ## Screenshots
 
 Below you can an example of the tool in action. We are filtering here by signal strenght to cherry pick a target out of a location with many devices. 
