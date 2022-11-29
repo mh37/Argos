@@ -4,6 +4,10 @@ This tool serves the purpose to showcase the amount of data a Wi-Fi enabled devi
 
 In short this tool utilizes passive WiFi tracking and profiling based on probe request frames. You can choose to save captured data, but depending on your local laws this might be infringing on data privacy laws.
 
+## Ethics
+
+This tool was only used in controlled environments under strict ethic guidelines, and with the explicit permission of the device owners and the owner of the physical facility and infrastructure. All report data and test results which are published here have been anonymized. While the tool itself works of passive data, it easy to violate privacy and data protection laws by capturing something that wasn't inteded to be captured. Any usage of this tool should be limited to controlled environments and with extensive permissions of all involved parties. 
+
 ## Screenshots
 
 Below you can an example of the tool in action. We are filtering here by signal strenght to cherry pick a target out of a location with many devices. 
@@ -19,6 +23,8 @@ In this example, we managed to isolate three devices (MAC addresses) that have a
 - Alfa AC1900 WiFi Adapter (highly recommended for optimal performance)
   - Also works on some Intel AC WiFi cards which are common on modern laptops but your milage may vary. It worked when I tested it on a Intel AC 9560
   - I heard that with a modified driver you can also run the wireless NIC of some Raspberry Pi models in monitoring mode. But I did not test this.
+  
+![Web UI](https://github.com/mh37/Argos/blob/Development/Reports/Pictures/setup.jpg?raw=true)
 
 ## Requirements
 
