@@ -6,7 +6,7 @@ In short this tool utilizes passive WiFi tracking and profiling based on probe r
 
 ## Ethics
 
-This tool was only tested in controlled environments under strict ethic guidelines, and with the explicit permission of the device owners. If you want to do the same you can find a template of a consent form in this repository.  
+This tool was only used in controlled environments under strict ethic guidelines, and with the explicit permission of the device owners and the owner of the physical facility and infrastructure. All report data and test results which are published here have been anonymized. While the tool itself works of passive data, it easy to violate privacy and data protection laws by capturing something that wasn't inteded to be captured. Any usage of this tool should be limited to controlled environments and with extensive permissions of all involved parties. 
 
 ## Screenshots
 
