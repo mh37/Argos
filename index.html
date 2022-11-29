@@ -3,9 +3,10 @@
   <head>
     <meta name="viewport" charset="utf-8" http-equiv="content-type" content="width=device-width, initial-scale=1.0, text/html">
     <title>Argos</title>
+    <script src="script/polyfill.min.js"></script>
+    <script src="script/jquery-3.6.1.slim.min.js"></script>
     <link rel="stylesheet" href="style/bootstrap.min.css">
     <link rel="stylesheet" href="style/style.css">
-    <link rel="stylesheet" href="style/tui-grid.css" />
   </head>
   <body>
     <div id="header">
@@ -14,7 +15,7 @@
       <br />
     <div id="pageContainer">
       <div id="ssidTableContainer">
-        <div id="grid"></div>
+        <input class="form-control" id="searchInput" type="text" placeholder="Search..">
         <br>
         <table id="table" class="table table-hover table-dark"   data-filter-control="true" data-show-search-clear-button="true">
           <thead>
@@ -26,6 +27,30 @@
             </tr>
           </thead>
           <tbody id="ssidList">
+            <tr>
+              <td>-80</td>
+              <td>test</td>
+              <td>test</td>
+              <td>test</td>
+            </tr>
+            <tr>
+              <td>-80</td>
+              <td>test</td>
+              <td>test</td>
+              <td>test</td>
+            </tr>
+            <tr>
+              <td>-60</td>
+              <td>test</td>
+              <td>test</td>
+              <td>test</td>
+            </tr>
+            <tr>
+              <td>-50</td>
+              <td>test</td>
+              <td>test</td>
+              <td>test</td>
+            </tr>
           </tbody>
         </table>
       </div>
@@ -38,33 +63,6 @@
     </div>
     <script src="config.js"></script>
     <script type="text/javascript">
-
-
-      const Grid = tui.Grid;
-      const instance = new Grid({
-        el: document.getElementById('grid'), // Container element
-        columns: [
-          {
-            header: 'RSSI',
-            name: 'rssi'
-          },
-          {
-            header: 'SSID',
-            name: 'ssid'
-          },
-          {
-            header: 'Device',
-            name: 'device'
-          },
-          {
-            header: 'Vendor',
-            name: 'vendor'
-          }
-        ]
-      });
-
-
-
       var map;
 
       function initMap() {
@@ -97,8 +95,6 @@
           var msg = JSON.parse(event.data)
           var loc;
 
-          instance.resetData(msg);
-
           for(i=0;i<msg.location.length;i++) { //>
             if(msg.location[i].lat == 0.0 && msg.location[i].lng == 0.0) {
               loc = new google.maps.LatLng(config.defaultLat, config.defaultLong)
@@ -126,9 +122,10 @@
       script.defer = true
       script.src = "https://maps.googleapis.com/maps/api/js?key=" + config.googleMapsAPIKey + "&callback=initMap"
       document.body.appendChild(script);
+
+
+      
+
   </script>
-  <script src="script/polyfill.min.js"></script>
-  <script src="script/jquery-3.6.1.slim.min.js"></script>
-  <script src="script/tui-grid.js"></script>
   </body>
 </html>
