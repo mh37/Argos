@@ -23,6 +23,8 @@ In this example, we managed to isolate three devices (MAC addresses) that have a
 - Alfa AC1900 WiFi Adapter (highly recommended for optimal performance)
   - Also works on some Intel AC WiFi cards which are common on modern laptops but your milage may vary. It worked when I tested it on a Intel AC 9560
   - I heard that with a modified driver you can also run the wireless NIC of some Raspberry Pi models in monitoring mode. But I did not test this.
+  
+![Web UI](https://github.com/mh37/Argos/blob/Development/Reports/Pictures/setup.jpg?raw=true)
 
 ## Requirements
 
