@@ -43,34 +43,29 @@
     <script src="config.js"></script>
     <script type="text/javascript">
 
-
-
-      // Grid Options are properties passed to the grid
-      const gridOptions = {
-      // each entry here represents one column
-      columnDefs: [
+      const columnDefs = [
         { field: "rssi" },
         { field: "ssid" },
         { field: "device" },
-        { field: "vendor" },
-      ],
+        { field: "vendor" }
+      ];
 
-      // default col def properties get applied to all columns
-      defaultColDef: {sortable: true, filter: true},
+      // specify the data
+      const rowData = [];
 
-      rowSelection: 'multiple', // allow rows to be selected
-      animateRows: true, // have rows animate to new positions when sorted
-
-      // example event handler
-      onCellClicked: params => {
-        console.log('cell was clicked', params)
-      }
+      // let the grid know which columns and what data to use
+      const gridOptions = {
+        columnDefs: columnDefs,
+        rowData: rowData
       };
 
-      // get div to host the grid
-      const eGridDiv = document.getElementById("myGrid");
-      // new grid instance, passing in the hosting DIV and Grid Options
-      new agGrid.Grid(eGridDiv, gridOptions);
+      // setup the grid after the page has finished loading
+      document.addEventListener('DOMContentLoaded', () => {
+          const gridDiv = document.querySelector('#myGrid');
+          new agGrid.Grid(gridDiv, gridOptions);
+      });
+
+
 
 
 
@@ -122,7 +117,8 @@
           }
           //add a new item to the SSID list
           document.getElementById("ssidList").innerHTML = document.getElementById("ssidList").innerHTML + "<tr><td>" + msg.rssi + "</td><td>" + msg.ssid + "</td><td>" + msg.device + "</td><td>" + msg.vendor +"</td></tr>"
-          gridOptions.api.setRowData(msg);
+          rowData = msg;
+          //gridOptions.api.setRowData(msg);
         };
 
         websocket.onerror = function(event) {
