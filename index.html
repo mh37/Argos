@@ -47,17 +47,15 @@
         rowSelection: 'multiple', // allow rows to be selected
         animateRows: true, // have rows animate to new positions when sorted
       };
-
-      gridOptions.api.sizeColumnsToFit({
-        defaultMinWidth: 100
-      });
       
       // get div to host the grid
       const eGridDiv = document.getElementById("myGrid");
       // new grid instance, passing in the hosting DIV and Grid Options
       new agGrid.Grid(eGridDiv, gridOptions);
       // size columns to fit
-      
+      gridOptions.api.sizeColumnsToFit({
+        defaultMinWidth: 100
+      });
 
 
 
