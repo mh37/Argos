@@ -8,6 +8,7 @@ logging.getLogger("scapy.runtime").setLevel(logging.ERROR)  # Supress scapy warn
 from scapy.all import *
 import argparse
 import json
+import re
 import itertools
 import hashlib
 from http.client import HTTPSConnection
@@ -17,6 +18,15 @@ from tornado import websocket, web, httpserver, ioloop
 #in case you need to hop through channels (2.4 and 5 GHz Europe)
 channels = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 32, 34, 36, 38, 40, 42, 44, 46, 48, 50, 52, 54, 56, 58, 60, 62, 64, 68, 96, 100, 102, 104, 106, 108, 110, 112, 114, 116, 118, 120, 122, 124, 126, 128, 132, 134, 136, 138, 140, 142, 144, 149, 151, 153, 155, 157, 159, 161, 165, 167, 169, 171, 173]
 
+class LazyDecoder(json.JSONDecoder):
+    def decode(self, s, **kwargs):
+        regex_replacements = [
+            (re.compile(r'([^\\])\\([^\\])'), r'\1\\\\\2'),
+            (re.compile(r',(\s*])'), r'\1'),
+        ]
+        for regex, replacement in regex_replacements:
+            s = regex.sub(replacement, s)
+        return super().decode(s, **kwargs)
 class WebSocketSever(websocket.WebSocketHandler):
 
     def check_origin(self, origin):
@@ -86,7 +96,7 @@ class FrameHandler:
             resp = conn.getresponse()
             data = str(resp.read())[2:-1]
             data = data.replace("true", "\"True\"").replace("false", "\"False\"")
-            dataJson = json.loads(data)
+            dataJson = json.loads(data, cls=LazyDecoder)
             if (dataJson['success'] == "False" and dataJson['error'] == "too many queries today"):
                 print("[!] WIGLE API LIMIT REACHED. Sending  coordinates 0.0 0.0")
                 locations.append({})
