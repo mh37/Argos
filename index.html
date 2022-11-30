@@ -19,19 +19,7 @@
     <div id="pageContainer">
       <div id="ssidTableContainer">
         <br>
-        <div id="myGrid" style="height: 200px" class="ag-theme-alpine"></div>
-        <table id="table" class="table table-hover table-dark"   data-filter-control="true" data-show-search-clear-button="true">
-          <thead>
-            <tr>
-              <th data-field="rssi" data-filter-control="input" scope="col">RSSI</th>
-              <th data-field="ssid" data-filter-control="input" scope="col">SSID</th>
-              <th data-field="device" data-filter-control="input" scope="col">Device</th>
-              <th data-field="vendor" scope="col">Vendor</th>
-            </tr>
-          </thead>
-          <tbody id="ssidList">
-          </tbody>
-        </table>
+        <div id="myGrid" style="height: 200px; width: 100%;" class="ag-theme-alpine"></div>
       </div>
       <div id="map">
       </div>
@@ -119,8 +107,7 @@
                     map: map
             });
           }
-          //add a new item to the SSID list
-          document.getElementById("ssidList").innerHTML = document.getElementById("ssidList").innerHTML + "<tr><td>" + msg.rssi + "</td><td>" + msg.ssid + "</td><td>" + msg.device + "</td><td>" + msg.vendor +"</td></tr>"
+          //add a new item to the SSID Grid
           rowData.push({rssi: msg.rssi, ssid: msg.ssid, device: msg.device, vendor: msg.vendor});
           gridOptions.api.setRowData(rowData);
         };
