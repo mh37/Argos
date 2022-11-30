@@ -117,8 +117,7 @@
           }
           //add a new item to the SSID list
           document.getElementById("ssidList").innerHTML = document.getElementById("ssidList").innerHTML + "<tr><td>" + msg.rssi + "</td><td>" + msg.ssid + "</td><td>" + msg.device + "</td><td>" + msg.vendor +"</td></tr>"
-          rowData = msg;
-          //gridOptions.api.setRowData(msg);
+          rowData.push(msg);
         };
 
         websocket.onerror = function(event) {
