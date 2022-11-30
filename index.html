@@ -35,10 +35,10 @@
       const gridOptions = {
         // each entry here represents one column
         columnDefs: [
-          { field: "rssi", maxWidth: 100 },
-          { field: "ssid" },
-          { field: "device" },
-          { field: "vendor" },
+          { field: "rssi", headerName: "RSSI", maxWidth: 100, filter: 'agNumberColumnFilter', },
+          { field: "ssid", headerName: "SSID" },
+          { field: "device", headerName: "Device" },
+          { field: "vendor", headerName: "Vendor" },
         ],
 
         // default col def properties get applied to all columns
