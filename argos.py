@@ -73,7 +73,7 @@ class FrameHandler:
                     if (len(self.config["blacklist"]) > 0 and (info['ssid'] in self.config["blacklist"])):
                         return
                     if ((params.limitSignalStrength is not None) and (int(info['rssi']) < int(params.limitSignalStrength))):
-                        print("Skipping captured frame. Signal strength is below the set minimum of " + params.limitSignalStrength)
+                        print("Skipping captured frame. Signal strength" + info['rssi'] + "is below the set minimum of " + params.limitSignalStrength)
                         return
                     if (self.checkDuplicate(info) == False):
                         self.addSeen(info)
