@@ -36,9 +36,9 @@
         // each entry here represents one column
         columnDefs: [
           { field: "rssi", headerName: "RSSI", maxWidth: 100, filter: 'agNumberColumnFilter', },
-          { field: "ssid", headerName: "SSID" },
-          { field: "device", headerName: "Device" },
-          { field: "vendor", headerName: "Vendor" },
+          { field: "ssid", headerName: "SSID", resizable: true },
+          { field: "device", headerName: "Device", resizable: true },
+          { field: "vendor", headerName: "Vendor", resizable: true },
         ],
 
         // default col def properties get applied to all columns
@@ -48,14 +48,16 @@
         animateRows: true, // have rows animate to new positions when sorted
       };
 
+      gridOptions.api.sizeColumnsToFit({
+        defaultMinWidth: 100
+      });
+      
       // get div to host the grid
       const eGridDiv = document.getElementById("myGrid");
       // new grid instance, passing in the hosting DIV and Grid Options
       new agGrid.Grid(eGridDiv, gridOptions);
       // size columns to fit
-      gridOptions.api.sizeColumnsToFit({
-        defaultMinWidth: 100
-      });
+      
 
 
 
