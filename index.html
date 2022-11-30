@@ -19,6 +19,7 @@
     <div id="pageContainer">
       <div id="ssidTableContainer">
         <br>
+        <button onclick="add()">ADD</button>
         <div id="myGrid" style="height: 200px" class="ag-theme-alpine"></div>
         <table id="table" class="table table-hover table-dark"   data-filter-control="true" data-show-search-clear-button="true">
           <thead>
@@ -72,12 +73,6 @@
       // new grid instance, passing in the hosting DIV and Grid Options
       new agGrid.Grid(eGridDiv, gridOptions);
 
-      // load fetched data into grid
-      gridOptions.api.setRowData(rowData);
-
-
-
-
 
 
 
@@ -127,7 +122,8 @@
           }
           //add a new item to the SSID list
           document.getElementById("ssidList").innerHTML = document.getElementById("ssidList").innerHTML + "<tr><td>" + msg.rssi + "</td><td>" + msg.ssid + "</td><td>" + msg.device + "</td><td>" + msg.vendor +"</td></tr>"
-          this.rowData.push(msg);
+          rowData.push({rssi: msg.rssi, ssid: msg.ssid, device: msg.device, vendor: msg.vendor});
+          gridOptions.api.setRowData(rowData);
         };
 
         websocket.onerror = function(event) {
