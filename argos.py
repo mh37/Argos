@@ -72,6 +72,8 @@ class FrameHandler:
                         return
                     if (len(self.config["blacklist"]) > 0 and (info['ssid'] in self.config["blacklist"])):
                         return
+                    if ((params.limitSignalStrength != NULL) and (info['rssi'] < params.limitSignalStrength)):
+                        return
                     if (self.checkDuplicate(info) == False):
                         self.addSeen(info)
                         locations = self.getLocation(probeSSID)
@@ -178,6 +180,8 @@ def main():
     parser.add_argument('-i', '--interface', help="interface to capture on")
     # Warning, storage of MAC addresses falls under GDPR regulations
     parser.add_argument('-w', '--write', help="Write data to file")
+    # Limit signal strength to avoid capturing too much
+    parser.add_argument('-lss', '--limitSignalStrength', help="Limit signal strength to avoid capturing too much")
     params = parser.parse_args()
 
     print("Argos")
