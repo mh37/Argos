@@ -69,9 +69,10 @@ class FrameHandler:
                     info['vendor'] = checkVendor(frame.addr2)
                     info['rssi'] = frame.dBm_AntSignal
                     if (len(self.config["whitelist"]) > 0 and (info['ssid'] not in self.config["whitelist"])):
+                        print("Probe Request for " + info['ssid'] + " is not on the whitelist and was skipped.")
                         return
                     if (len(self.config["blacklist"]) > 0 and (info['ssid'] in self.config["blacklist"])):
-                        print("Request for " + info['ssid'] + " is on the blacklist and was skipped.")
+                        print("Probe Request for " + info['ssid'] + " is on the blacklist and was skipped.")
                         return
                     if ((params.limitSignalStrength is not None) and (int(info['rssi']) < int(params.limitSignalStrength))):
                         print("Skipping captured frame. Signal strength" + info['rssi'] + "is below the set minimum of " + params.limitSignalStrength)
