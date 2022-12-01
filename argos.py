@@ -71,6 +71,7 @@ class FrameHandler:
                     if (len(self.config["whitelist"]) > 0 and (info['ssid'] not in self.config["whitelist"])):
                         return
                     if (len(self.config["blacklist"]) > 0 and (info['ssid'] in self.config["blacklist"])):
+                        print("Request for " + info['ssid'] + " is on the blacklist and was skipped.")
                         return
                     if ((params.limitSignalStrength is not None) and (int(info['rssi']) < int(params.limitSignalStrength))):
                         print("Skipping captured frame. Signal strength" + info['rssi'] + "is below the set minimum of " + params.limitSignalStrength)
