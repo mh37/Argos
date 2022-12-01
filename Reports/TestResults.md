@@ -11,19 +11,16 @@ Additionally, I blacklisted SSIDs that are hosted at the test location since the
 ### Test 1
 
 **Date / Time:**
+1.12.2022 / 16:16
 
 **Device/s:**
+Galaxy S20 
 
-- x
 
-**Associated SSIDs:**
+**Results:**
+I identified three SSIDs belonging to the test subject. The phone sent them out twice under two different SSIDs. It was possible to crossreference two of the SSIDs with accurate geographical coordinates.  
 
-- x
 
-**Revealed Location Data:**
 
-- x
+### Test 2
 
-**Screenshots**
-
-**Summary**
