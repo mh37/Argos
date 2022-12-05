@@ -59,6 +59,7 @@ In this example, we managed to isolate three devices (MAC addresses) that have a
 - Obtain coordinates based on SSID names
 - Show SSID location as markers on Google Maps
 - Dynamic filtering of output data (Signal strength, SSID, MAC, Vendor)
+- Manual limiting of signal strength to reduce scope of the scanning
 - Saving of recorded data (WARNING: This may be illegal in your country)
 
 ## Limitations
