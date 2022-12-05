@@ -32,7 +32,17 @@ Additionally, I blacklisted SSIDs that are hosted at the test location since the
 >I identified four SSIDs belonging to the device owner. It was possible to crossreference three of the SSIDs with accurate geographical coordinates. One showing the home address, the school Wi-Fi, and the Helsinki Hospital.    
 >
 
+### Test 3
 
+>**Date / Time:**
+>5.12.2022 / 12:35
+>
+>**Device/s:**
+>Google Pixel 6 
+>
+>**Results:**
+>I identified one SSIDs belonging to the device owner. It was possible to crossreference it with the school, but I wasn't able to capture any other SSIDs off this device. The device settings showed that there are 8 more networks saved but nothing else was visible through scanning. 
+>
 
 
 
