@@ -4,9 +4,9 @@ var config = {
                 "defaultLat": "60.201790",
                 "defaultLong": "24.933960",
                 "defaultZoom": 8,
-                "wigleAuthToken": "<WIGLE_API_TOKEN_IN_BASE64>",
-                "googleMapsAPIKey": "<GOOGLE_MAPS_API_KEY>",
+                "wigleAuthToken": "QUlEZTdiZTU2NzA1ZTlkZWUzOWNmMTY3NjRiZjJjNzkyN2M6MGI0MmQzMmFjMjlhOWMzODExN2VmNjlkZmJlYmFlZjg=",
+                "googleMapsAPIKey": "AIzaSyDwo1Rn-JjTmJ3pEEHlsAYpONhILOYkwTs",
                 "whitelist": [],
-                "blacklist": []
+                "blacklist": ["HHwlan","eduroam","HaagaHeliaPublic","homerun1x"]
               }
   
