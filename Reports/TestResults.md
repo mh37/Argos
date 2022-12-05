@@ -8,7 +8,7 @@ All testing was performed on the campus facilities of Haaga-Helia in Helsinki. E
 
 Additionally, I blacklisted SSIDs that are hosted at the test location since they are of no signifficant value to me in this specific test scope and it helps to greatly limit the amount of API calls. I will still mention the appearance of the blacklisted SSIDs in the tests but I am not running any geolocation on them since I know where they are.
 
-#### Test 1
+### Test 1
 
 >**Date / Time:**
 >1.12.2022 / 16:16
