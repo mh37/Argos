@@ -56,5 +56,17 @@ Additionally, I blacklisted SSIDs that are hosted at the test location since the
 >
 >**Results:**
 >I identified four SSIDs belonging to the device owner. One was the school Wi-Fi, one their home Wi-Fi, and one was a public library, and one was the SSID of the free Wi-Fi of trains in Finland. I capture all the SSIDs from both devices. 
+
+
+### Test 5
+
+>**Date / Time:**
+>5.12.2022 / 15:42
+>
+>**Device/s:**
+>Samsung S9+
+>
+>**Results:**
+>I identified six SSIDs belonging to the device owner. Two for University access points (one in the current location), one from their student exchange university in Canada, one from a hotel in Toronto, one from their ex-partners home address, and one from their student apartment, and one from an airport. All locations were able to be mapped by geolocation.  
 >
 
