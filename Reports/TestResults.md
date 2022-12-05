@@ -44,5 +44,15 @@ Additionally, I blacklisted SSIDs that are hosted at the test location since the
 >I identified one SSIDs belonging to the device owner. It was possible to crossreference it with the school, but I wasn't able to capture any other SSIDs off this device. The device settings showed that there are 8 more networks saved but nothing else was visible through scanning. 
 >
 
+### Test 4
 
+>**Date / Time:**
+>5.12.2022 / 13:03
+>
+>**Device/s:**
+>Macbook & iPhone
+>
+>**Results:**
+>I identified four SSIDs belonging to the device owner. One was the school Wi-Fi, one their home Wi-Fi, and one was a public library, and one was the SSID of the free Wi-Fi of trains in Finland. I capture all the SSIDs from both devices. 
+>
 
