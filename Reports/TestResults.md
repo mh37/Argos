@@ -70,3 +70,14 @@ Additionally, I blacklisted SSIDs that are hosted at the test location since the
 >I identified six SSIDs belonging to the device owner. Two for University access points (one in the current location), one from their student exchange university in Canada, one from a hotel in Toronto, one from their ex-partners home address, and one from their student apartment, and one from an airport. All locations were able to be mapped by geolocation.  
 >
 
+### Test 6
+
+>**Date / Time:**
+>7.12.2022 / 14:36
+>
+>**Device/s:**
+>iPhone 8 & Lenovo Thinkpad (Win 11)
+>
+>**Results:**
+>For this participant I only managed to capture probe requests for the school Wi-Fi, no probe requests for other SSIDs were identified. 
+>
