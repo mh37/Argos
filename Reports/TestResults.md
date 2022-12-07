@@ -2,7 +2,7 @@
 
 Overall, the testing revealed that all Wi-Fi enabled devices revealed SSID data, but not always all of the stored SSIDs within the device.
 
-Currently it remains a unknow to me why some devices only send requests for the current location, while others indiscriminately send out every SSID they know.
+Currently it remains a unknow to me why some devices only send requests for the current location, while others indiscriminately send out every SSID they know. There seems to be some kind of logic at play that directly impacts when what is sent. This is definately something that would call for further investigation.
 
 Interestingly devices with MAC randomization would not only randomize the address partially but rather completely. So in most cases when a device vendor can't be associated with the MAC it means that the address is randomized. 
 
