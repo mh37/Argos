@@ -65,11 +65,10 @@ In this example, we managed to isolate three devices (MAC addresses) that have a
 
 ## Limitations
 
-- limited amount of API calls with Wigle free tier
 - Vendor List is lacking
 - some devices are a lot more careful with their probe requests
 - MAC randomization make it a lot harder to fingerprint devices, especially for long term tracking. Nevertheless, it doesn't make it impossible. For more information check out [Why MAC Address Randomization is not Enough:
-  An Analysis of Wi-Fi Network Discovery Mechanisms](https://papers.mathyvanhoef.com/asiaccs2016.pdfhttps:/)
+  An Analysis of Wi-Fi Network Discovery Mechanisms](https://papers.mathyvanhoef.com/asiaccs2016.pdf)
 
 ## API integrations
 
