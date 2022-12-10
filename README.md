@@ -55,6 +55,7 @@ In this example, we managed to isolate three devices (MAC addresses) that have a
 - Web Interface (so we can access the tool even if we are not near our monitoring device)
 - Scan for probe requests
 - Ignore duplicate requests
+- Mapping of vendor names based on MAC addresses
 - Utilize Blacklist and Whitelist for SSIDs
 - Obtain coordinates based on SSID names
 - Show SSID location as markers on Google Maps
