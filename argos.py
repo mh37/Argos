@@ -75,6 +75,17 @@ class StaticFileHandler(web.StaticFileHandler):
     def set_extra_headers(self, path):
         self.set_header("Cache-Control", "no-store, no-cache, must-revalidate, max-age=0")
 
+class ConfigHandler(web.RequestHandler):
+    def get(self):
+        config = getConfig()
+        safe_config = {
+            "googleMapsAPIKey": config.get("googleMapsAPIKey", ""),
+            "defaultLat": config.get("defaultLat", "60.201790"),
+            "defaultLong": config.get("defaultLong", "24.933960"),
+            "defaultZoom": config.get("defaultZoom", 8),
+        }
+        self.write(safe_config)
+
 class FrameHandler:
     def __init__(self, cfg: Dict[str, Any], out: Optional[str]):
         self.seen: List[str] = []
@@ -246,7 +257,8 @@ def main():
     logger.info("Starting the web socket server...")
     app = web.Application([
         (r'/ws', WebSocketServer),
-        (r'/(.*)', StaticFileHandler, {"path": ".", "default_filename": "index.html"}),
+        (r'/api/config', ConfigHandler),
+        (r'/(.*)', StaticFileHandler, {"path": "public", "default_filename": "index.html"}),
     ])
 
     http_server = httpserver.HTTPServer(app)
