@@ -156,8 +156,6 @@ class FrameHandler:
                 return locations
         except Exception:
             logger.exception(f"Error retrieving lat and long for {ssid}")
-            if 'data' in locals():
-                logger.error(f"Response: {data}")
 
         return locations
 
