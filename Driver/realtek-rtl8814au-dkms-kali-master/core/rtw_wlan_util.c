@@ -1668,7 +1668,7 @@ void WMMOnAssocRsp(_adapter *padapter)
 			pxmitpriv->wmm_para_seq[i] = inx[i];
 			RTW_INFO("wmm_para_seq(%d): %d\n", i, pxmitpriv->wmm_para_seq[i]);
 		}
-		
+
 #ifdef CONFIG_WMMPS_STA
 		/* if AP supports UAPSD function, driver must set each uapsd TID to coresponding mac register 0x693 */
 		if (pmlmeinfo->WMM_param.QoS_info & AP_SUPPORTED_UAPSD) {
@@ -2382,7 +2382,7 @@ void rtw_absorb_ssid_ifneed(_adapter *padapter, WLAN_BSSID_EX *bssid, u8 *pframe
 			ie_offset = _FIXED_IE_LENGTH_;
 		}
 	}
-	
+
 	_enter_critical_bh(&padapter->mlmepriv.scanned_queue.lock, &irqL);
 	scanned = _rtw_find_network(&padapter->mlmepriv.scanned_queue, mac);
 	if (!scanned) {
@@ -3157,7 +3157,7 @@ unsigned char check_assoc_AP(u8 *pframe, uint len)
 void get_assoc_AP_Vendor(char *vendor, u8 assoc_AP_vendor)
 {
 	switch (assoc_AP_vendor) {
-	
+
 	case HT_IOT_PEER_UNKNOWN:
 	sprintf(vendor, "%s", "unknown");
 	break;
@@ -3215,7 +3215,7 @@ void rtw_parse_sta_vendor_ie_8812(_adapter *adapter, struct sta_info *sta, u8 *t
 
 			if(*(p+6) != 2)
 				goto exit;
-			
+
 			if(*(p+8) == RT_HT_CAP_USE_JAGUAR_BCUT)
 				sta->vendor_8812 = TRUE;
 			else if (*(p+8) == RT_HT_CAP_USE_JAGUAR_CCUT)
@@ -3442,7 +3442,7 @@ int rtw_ies_get_supported_rate(u8 *ies, uint ies_len, u8 *rate_set, u8 *rate_num
 		{IEEE80211_OFDM_RATE_48MB,		_FALSE,		_FALSE},
 		{IEEE80211_OFDM_RATE_54MB,		_FALSE,		_FALSE},
 	};
-		
+
 	if (!rate_set || !rate_num)
 		return _FALSE;
 
@@ -4770,10 +4770,15 @@ int rtw_dev_nlo_info_set(struct pno_nlo_info *nlo_info, pno_ssid_t *ssid,
 	if (nlo_info->hidden_ssid_num > 8)
 		nlo_info->hidden_ssid_num = 8;
 
-	/* TODO: channel list and probe index is all empty. */
+	/* channel list and probe index default fallback. */
 	for (i = 0 ; i < num ; i++) {
 		nlo_info->ssid_length[i]
 			= ssid[i].SSID_len;
+		nlo_info->ssid_channel_info[i] = 0;
+	}
+
+	for (i = 0; i < MAX_HIDDEN_AP; i++) {
+		nlo_info->loc_probe_req[i] = 0;
 	}
 
 	/* cipher array */
