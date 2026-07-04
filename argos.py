@@ -88,7 +88,7 @@ class ConfigHandler(web.RequestHandler):
 
 class FrameHandler:
     def __init__(self, cfg: Dict[str, Any], out: Optional[str]):
-        self.seen: List[str] = []
+        self.seen: Set[str] = set()
         self.config = cfg
         self.outFile = out
         self.executor = ThreadPoolExecutor(max_workers=5)
@@ -125,8 +125,10 @@ class FrameHandler:
                     if params.limitSignalStrength is not None and int(info['rssi']) < int(params.limitSignalStrength):
                         logger.info(f"Skipping captured frame. Signal strength {info['rssi']} is below the set minimum of {params.limitSignalStrength}")
                         return
-                    if not self.checkDuplicate(info):
-                        self.addSeen(info)
+                    identifier = f"{info['device']}{info['ssid']}"
+                    computed_hash = hashlib.md5(identifier.encode('utf-8')).hexdigest()
+                    if not self.checkDuplicate(info, computed_hash):
+                        self.addSeen(info, computed_hash)
                         self.executor.submit(self.process_probe, info, probeSSID)
             except Exception:
                 logger.exception("Error in frame handler")
@@ -161,17 +163,21 @@ class FrameHandler:
 
         return locations
 
-    def addSeen(self, info: Dict[str, Any]):
+    def addSeen(self, info: Dict[str, Any], computed_hash: Optional[str] = None):
         try:
-            identifier = f"{info['device']}{info['ssid']}"
-            self.seen.append(hashlib.md5(identifier.encode('utf-8')).hexdigest())
+            if computed_hash is None:
+                identifier = f"{info['device']}{info['ssid']}"
+                computed_hash = hashlib.md5(identifier.encode('utf-8')).hexdigest()
+            self.seen.add(computed_hash)
         except Exception:
             logger.exception("Error. SSID was not stored successfully")
 
-    def checkDuplicate(self, info: Dict[str, Any]) -> bool:
+    def checkDuplicate(self, info: Dict[str, Any], computed_hash: Optional[str] = None) -> bool:
         try:
-            identifier = f"{info['device']}{info['ssid']}"
-            return hashlib.md5(identifier.encode('utf-8')).hexdigest() in self.seen
+            if computed_hash is None:
+                identifier = f"{info['device']}{info['ssid']}"
+                computed_hash = hashlib.md5(identifier.encode('utf-8')).hexdigest()
+            return computed_hash in self.seen
         except Exception:
             logger.exception("Error. SSID duplicate check failed")
             return True
