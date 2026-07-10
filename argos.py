@@ -161,11 +161,14 @@ class FrameHandler:
 
         return locations
 
+    def _compute_hash(self, info: Dict[str, Any]) -> str:
+        identifier = f"{info['device']}{info['ssid']}"
+        return hashlib.sha256(identifier.encode('utf-8')).hexdigest()
+
     def addSeen(self, info: Dict[str, Any], computed_hash: Optional[str] = None):
         try:
             if computed_hash is None:
-                identifier = f"{info['device']}{info['ssid']}"
-                computed_hash = hashlib.sha256(identifier.encode('utf-8')).hexdigest()
+                computed_hash = self._compute_hash(info)
             self.seen.add(computed_hash)
         except Exception:
             logger.exception("Error. SSID was not stored successfully")
@@ -173,8 +176,7 @@ class FrameHandler:
     def checkDuplicate(self, info: Dict[str, Any], computed_hash: Optional[str] = None) -> bool:
         try:
             if computed_hash is None:
-                identifier = f"{info['device']}{info['ssid']}"
-                computed_hash = hashlib.sha256(identifier.encode('utf-8')).hexdigest()
+                computed_hash = self._compute_hash(info)
             return computed_hash in self.seen
         except Exception:
             logger.exception("Error. SSID duplicate check failed")
