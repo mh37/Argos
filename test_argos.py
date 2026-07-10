@@ -1,4 +1,5 @@
 import unittest
+import json
 import argos
 
 class TestCheckVendor(unittest.TestCase):
@@ -38,6 +39,30 @@ class TestCheckVendor(unittest.TestCase):
         self.assertEqual(argos.checkVendor(""), "N/A")
         self.assertEqual(argos.checkVendor("12:34"), "N/A")
         self.assertEqual(argos.checkVendor("001122AABBCC"), "Vendor 6") # no colons
+
+class TestLazyDecoder(unittest.TestCase):
+
+    def test_unescaped_backslashes(self):
+        # tests transformations for incorrectly escaped backslashes.
+        # r'([^\\])\\([^\\])' -> r'\1\\\\\2'
+        # e.g., 'a\b' -> 'a\\b'
+        malformed_json = '{"key": "a\\b"}'
+        expected = {"key": "a\\b"}
+        self.assertEqual(json.loads(malformed_json, cls=argos.LazyDecoder), expected)
+
+    def test_trailing_comma_array(self):
+        # tests handling of poorly formatted arrays with trailing commas.
+        # r',(\s*])' -> r'\1'
+        # e.g., '[1, 2, ]' -> '[1, 2 ]'
+        malformed_json = '{"key": [1, 2,]}'
+        expected = {"key": [1, 2]}
+        self.assertEqual(json.loads(malformed_json, cls=argos.LazyDecoder), expected)
+
+    def test_valid_json(self):
+        # ensures regular valid JSON parsing still works fine.
+        valid_json = '{"key": "value", "list": [1, 2]}'
+        expected = {"key": "value", "list": [1, 2]}
+        self.assertEqual(json.loads(valid_json, cls=argos.LazyDecoder), expected)
 
 if __name__ == '__main__':
     unittest.main()
