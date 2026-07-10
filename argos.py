@@ -8,7 +8,6 @@ import itertools
 import hashlib
 import urllib.parse
 import subprocess
-import os
 import threading
 from concurrent.futures import ThreadPoolExecutor
 from typing import List, Dict, Optional, Any, Set
