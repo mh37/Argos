@@ -38,12 +38,13 @@ except FileNotFoundError:
 channels = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 32, 34, 36, 38, 40, 42, 44, 46, 48, 50, 52, 54, 56, 58, 60, 62, 64, 68, 96, 100, 102, 104, 106, 108, 110, 112, 114, 116, 118, 120, 122, 124, 126, 128, 132, 134, 136, 138, 140, 142, 144, 149, 151, 153, 155, 157, 159, 161, 165, 167, 169, 171, 173]
 
 class LazyDecoder(json.JSONDecoder):
+    _REGEX_REPLACEMENTS = [
+        (re.compile(r'([^\\])\\([^\\])'), r'\1\\\\\2'),
+        (re.compile(r',(\s*])'), r'\1'),
+    ]
+
     def decode(self, s, **kwargs):
-        regex_replacements = [
-            (re.compile(r'([^\\])\\([^\\])'), r'\1\\\\\2'),
-            (re.compile(r',(\s*])'), r'\1'),
-        ]
-        for regex, replacement in regex_replacements:
+        for regex, replacement in self._REGEX_REPLACEMENTS:
             s = regex.sub(replacement, s)
         return super().decode(s, **kwargs)
 class WebSocketServer(websocket.WebSocketHandler):
