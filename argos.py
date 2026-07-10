@@ -33,9 +33,6 @@ try:
 except FileNotFoundError:
     logger.error("vendors.txt not found. Vendor lookup will be disabled.")
 
-#in case you need to hop through channels (2.4 and 5 GHz Europe)
-channels = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 32, 34, 36, 38, 40, 42, 44, 46, 48, 50, 52, 54, 56, 58, 60, 62, 64, 68, 96, 100, 102, 104, 106, 108, 110, 112, 114, 116, 118, 120, 122, 124, 126, 128, 132, 134, 136, 138, 140, 142, 144, 149, 151, 153, 155, 157, 159, 161, 165, 167, 169, 171, 173]
-
 class LazyDecoder(json.JSONDecoder):
     _REGEX_REPLACEMENTS = [
         (re.compile(r'([^\\])\\([^\\])'), r'\1\\\\\2'),
@@ -203,15 +200,6 @@ def start_sniffer(config: Dict[str, Any], interface: str, write_file: Optional[s
 
     sniff(iface=interface, prn=frameHandler.handler, store=0)
     logger.info("Sniffer stopped.")
-
-def hopChannel():
-    for channel in itertools.cycle(channels):
-        try:
-            subprocess.run(["iwconfig", params.interface, "channel", str(channel)], check=False)
-        except Exception:
-            logger.exception("Error hopping channel")
-        import time
-        time.sleep(3)
 
 
 def getConfig() -> Dict[str, Any]:
