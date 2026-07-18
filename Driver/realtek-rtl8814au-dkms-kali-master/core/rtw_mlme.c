@@ -3079,15 +3079,26 @@ void rtw_mlme_reset_auto_scan_int(_adapter *adapter, u8 *reason)
 #endif
 	u8 u_ch;
 	u32 interval_ms = 0xffffffff; /* 0xffffffff: special value to make min() works well, also means no auto scan */
+	sint ht_ielen = 0;
+	u8 *pht_cap_ie = NULL;
+	u8 ap_bw_40m = _FALSE;
 
 	*reason = RTW_AUTO_SCAN_REASON_UNSPECIFIED;
 	rtw_mi_get_ch_setting_union(adapter, &u_ch, NULL, NULL);
+
+	if (is_client_associated_to_ap(adapter) == _TRUE) {
+		pht_cap_ie = rtw_get_ie(BSS_EX_TLV_IES(&adapter->mlmepriv.cur_network.network), _HT_CAPABILITY_IE_, &ht_ielen, BSS_EX_TLV_IES_LEN(&adapter->mlmepriv.cur_network.network));
+		if (pht_cap_ie && ht_ielen > 0) {
+			if (GET_HT_CAP_ELE_CHL_WIDTH(pht_cap_ie + 2))
+				ap_bw_40m = _TRUE;
+		}
+	}
 
 	if (hal_chk_bw_cap(adapter, BW_CAP_40M)
 		&& is_client_associated_to_ap(adapter) == _TRUE
 		&& u_ch >= 1 && u_ch <= 14
 		&& adapter->registrypriv.wifi_spec
-		/* TODO: AP Connected is 40MHz capability? */
+		&& ap_bw_40m == _TRUE
 	) {
 		interval_ms = rtw_min(interval_ms, 60 * 1000);
 		*reason |= RTW_AUTO_SCAN_REASON_2040_BSS;
