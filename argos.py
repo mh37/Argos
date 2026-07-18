@@ -46,19 +46,16 @@ class LazyDecoder(json.JSONDecoder):
 class WebSocketServer(websocket.WebSocketHandler):
     clients: Set['WebSocketServer'] = set()
 
-    def check_origin(self, origin: str) -> bool:
-        return True
-
     def open(self):
         logger.info("Client connected")
-        WebSocketSever.clients.add(self)
+        WebSocketServer.clients.add(self)
 
     def on_message(self, message: str):
         logger.info(f"Message: {message}")
 
     def on_close(self):
         logger.info("Connection terminated.")
-        WebSocketSever.clients.remove(self)
+        WebSocketServer.clients.remove(self)
 
     @classmethod
     def broadcast(cls, message: str):
