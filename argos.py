@@ -120,7 +120,7 @@ class FrameHandler:
                         logger.info(f"Skipping captured frame. Signal strength {info['rssi']} is below the set minimum of {params.limitSignalStrength}")
                         return
                     identifier = f"{info['device']}{info['ssid']}"
-                    computed_hash = hashlib.sha256(identifier.encode('utf-8')).hexdigest()
+                    computed_hash = identifier
                     if not self.checkDuplicate(info, computed_hash):
                         self.addSeen(info, computed_hash)
                         self.executor.submit(self.process_probe, info, probeSSID)
@@ -157,7 +157,7 @@ class FrameHandler:
 
     def _compute_hash(self, info: Dict[str, Any]) -> str:
         identifier = f"{info['device']}{info['ssid']}"
-        return hashlib.sha256(identifier.encode('utf-8')).hexdigest()
+        return identifier
 
     def addSeen(self, info: Dict[str, Any], computed_hash: Optional[str] = None):
         try:
