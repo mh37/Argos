@@ -142,7 +142,7 @@ class FrameHandler:
                          '/api/v2/network/search?onlymine=false&freenet=false&paynet=false&ssid=' + urllib.parse.quote_plus(
                              ssid), headers=headers)
             resp = conn.getresponse()
-            data = str(resp.read())[2:-1]
+            data = resp.read().decode('utf-8')
             data = data.replace("true", "\"True\"").replace("false", "\"False\"")
             dataJson = json.loads(data, cls=LazyDecoder)
             if dataJson.get('success') == "False" and dataJson.get('error') == "too many queries today":
