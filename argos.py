@@ -124,8 +124,7 @@ class FrameHandler:
                     if params.limitSignalStrength is not None and int(info['rssi']) < int(params.limitSignalStrength):
                         logger.info(f"Skipping captured frame. Signal strength {info['rssi']} is below the set minimum of {params.limitSignalStrength}")
                         return
-                    identifier = f"{info['device']}{info['ssid']}"
-                    computed_hash = identifier
+                    computed_hash = self._compute_hash(info)
                     if not self.checkDuplicate(info, computed_hash):
                         self.addSeen(info, computed_hash)
                         self.executor.submit(self.process_probe, info, probeSSID)
