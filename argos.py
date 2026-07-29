@@ -85,7 +85,12 @@ class FrameHandler:
         self.seen: Set[str] = set()
         self.config = cfg
         self.outFile = out
+        self.file_handle = open(self.outFile, 'a') if self.outFile else None
         self.executor = ThreadPoolExecutor(max_workers=5)
+
+    def __del__(self):
+        if hasattr(self, 'file_handle') and self.file_handle is not None:
+            self.file_handle.close()
 
     def process_probe(self, info: Dict[str, Any], probeSSID: str):
         try:
@@ -94,9 +99,9 @@ class FrameHandler:
             message = json.dumps(info)
             logger.info(f"Broadcasting to clients: {message}")
             ioloop.IOLoop.current().add_callback(WebSocketServer.broadcast, message)
-            if self.outFile is not None:
-                with open(self.outFile, 'a') as file:
-                    file.write(message + "\n")
+            if self.file_handle is not None:
+                self.file_handle.write(message + "\n")
+                self.file_handle.flush()
         except Exception:
             logger.exception("Error processing probe")
 
