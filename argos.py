@@ -87,6 +87,8 @@ class FrameHandler:
         self.outFile = out
         self.file_handle = open(self.outFile, 'a') if self.outFile else None
         self.executor = ThreadPoolExecutor(max_workers=5)
+        self.location_cache: Dict[str, List[Dict[str, float]]] = {}
+        self._cache_lock = threading.Lock()
 
     def __del__(self):
         if hasattr(self, 'file_handle') and self.file_handle is not None:
@@ -133,6 +135,10 @@ class FrameHandler:
 
     # API Call to WIGLE.NET to obtain geolocation of SSIDS
     def getLocation(self, ssid: str) -> List[Dict[str, float]]:
+        with self._cache_lock:
+            if ssid in self.location_cache:
+                return self.location_cache[ssid]
+
         locations = []
         try:
             conn = HTTPSConnection("api.wigle.net")
@@ -146,14 +152,22 @@ class FrameHandler:
             dataJson = json.loads(data, cls=LazyDecoder)
             if dataJson.get('success') == "False" and dataJson.get('error') == "too many queries today":
                 logger.warning("WIGLE API LIMIT REACHED. Sending coordinates 0.0 0.0")
-                return [{'lat': 0.0, 'lng': 0.0}, {'lat': 0.0, 'lng': 0.0}]
+                result_coords = [{'lat': 0.0, 'lng': 0.0}, {'lat': 0.0, 'lng': 0.0}]
+                with self._cache_lock:
+                    self.location_cache[ssid] = result_coords
+                return result_coords
             elif dataJson.get('results'):
                 for result in dataJson['results']:
                     locations.append({
                         'lat': result['trilat'],
                         'lng': result['trilong']
                     })
+                with self._cache_lock:
+                    self.location_cache[ssid] = locations
                 return locations
+
+            with self._cache_lock:
+                self.location_cache[ssid] = locations
         except Exception:
             logger.exception(f"Error retrieving lat and long for {ssid}")
 
