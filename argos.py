@@ -207,6 +207,12 @@ def getConfig() -> Dict[str, Any]:
     try:
         with open("config.json", 'r') as file:
             config = json.load(file)
+
+        if "whitelist" in config and isinstance(config["whitelist"], list):
+            config["whitelist"] = set(config["whitelist"])
+        if "blacklist" in config and isinstance(config["blacklist"], list):
+            config["blacklist"] = set(config["blacklist"])
+
         return config
     except FileNotFoundError:
         logger.error("config.json not found.")
@@ -214,8 +220,8 @@ def getConfig() -> Dict[str, Any]:
         return {
             "serverIp": "127.0.0.1",
             "serverPort": "8888",
-            "whitelist": [],
-            "blacklist": []
+            "whitelist": set(),
+            "blacklist": set()
         }
 
 
