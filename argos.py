@@ -116,7 +116,6 @@ class FrameHandler:
                     info = {}
                     info['device'] = frame.addr2
                     info['ssid'] = probeSSID
-                    info['vendor'] = checkVendor(frame.addr2)
                     info['rssi'] = frame.dBm_AntSignal
                     if self.config["whitelist"] and info['ssid'] not in self.config["whitelist"]:
                         logger.info(f"Probe Request for {info['ssid']} is not on the whitelist and was skipped.")
@@ -129,6 +128,7 @@ class FrameHandler:
                         return
                     computed_hash = self._compute_hash(info)
                     if not self.checkDuplicate(info, computed_hash):
+                        info['vendor'] = checkVendor(frame.addr2)
                         self.addSeen(info, computed_hash)
                         self.executor.submit(self.process_probe, info, probeSSID)
             except Exception:
