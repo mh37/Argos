@@ -6,6 +6,7 @@ import json
 import re
 import itertools
 import hashlib
+import os
 import urllib.parse
 import subprocess
 import threading
@@ -217,8 +218,16 @@ def start_sniffer(config: Dict[str, Any], interface: str, write_file: Optional[s
     logger.info("Sniffer stopped.")
 
 
+_cached_config = None
+_config_mtime = 0.0
+
 def getConfig() -> Dict[str, Any]:
+    global _cached_config, _config_mtime
     try:
+        mtime = os.path.getmtime("config.json")
+        if _cached_config is not None and mtime == _config_mtime:
+            return _cached_config
+
         with open("config.json", 'r') as file:
             config = json.load(file)
 
@@ -227,6 +236,8 @@ def getConfig() -> Dict[str, Any]:
         if "blacklist" in config and isinstance(config["blacklist"], list):
             config["blacklist"] = set(config["blacklist"])
 
+        _cached_config = config
+        _config_mtime = mtime
         return config
     except FileNotFoundError:
         logger.error("config.json not found.")
