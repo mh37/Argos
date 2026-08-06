@@ -4632,8 +4632,8 @@ unsigned int rtw_restructure_ht_ie(_adapter *padapter, u8 *in_ie, u8 *out_ie, ui
 		cbw40_enable = oper_bw == CHANNEL_WIDTH_40 ? 1 : 0;
 	}
 
-	/* todo: disable SM power save mode */
-	/* ht_capie.cap_info |= IEEE80211_HT_CAP_SM_PS; */
+	/* disable SM power save mode */
+	ht_capie.cap_info |= IEEE80211_HT_CAP_SM_PS;
 
 	/* RX LDPC */
 	if (TEST_FLAG(phtpriv->ldpc_cap, LDPC_HT_ENABLE_RX)) {
