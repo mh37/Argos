@@ -5,7 +5,6 @@ import argparse
 import json
 import re
 import itertools
-import hashlib
 import os
 import urllib.parse
 import subprocess
